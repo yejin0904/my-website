@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPL TOP 6</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2016/09/02/20/57/soccer-1647574_960_720.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 16:9 비율 고정 배경 이미지 (위쪽에 붙음) */
+    body::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      background: url('https://www.ftimes.kr/news/photo/202405/25944_32024_3447.jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+
+      top: 0;
+      /* transform 제거하여 위쪽에 딱 붙게 설정 */
+    }
+
+    header {
+      background-color: rgba(0, 0, 50, 0.8);
+      text-align: center;
+      padding: 20px;
+      border-bottom: 4px solid #003366;
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 3.5vw;
+      margin: 0;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .team-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5vh;
+      padding: 5vh 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4vw;
+    }
+
+    .row img {
+      width: 15vw;
+      max-width: 180px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+    }
+
+    .row img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    @media screen and (max-width: 768px) {
+      header h1 {
+        font-size: 6vw;
+      }
+
+      .row img {
+        width: 25vw;
+        max-width: 150px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      header h1 {
+        font-size: 7vw;
+      }
+
+      .row img {
+        width: 30vw;
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EPL TOP 6</h1>
+  </header>
+
+  <div class="team-buttons">
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/ko/3/33/%EB%A7%A8%EC%B2%B4%EC%8A%A4%ED%84%B0_%EC%8B%9C%ED%8B%B0_FC_%EB%A1%9C%EA%B3%A0.svg" alt="맨체스터 시티" onclick="goToTeam('man_city')" />
+      <img src="https://i.namu.wiki/i/F_wpXk8w5qyqKKoQrLm65IVhAPvF_vrYIqeEMLJvmO9xVYWOsNnQUzS05ZvvLOe9kaO9pDGWK5tBefHLav-nHg.svg" alt="리버풀" onclick="goToTeam('liverpool')" />
+      <img src="https://t1.daumcdn.net/media/img-section/sports13/logo/team/14/42_300300.png" alt="아스널" onclick="goToTeam('arsenal')" />
+    </div>
+    <div class="row">
+      <img src="https://upload.wikimedia.org/wikipedia/ko/thumb/a/ae/Chelsea_FC_Logo.svg/2048px-Chelsea_FC_Logo.svg.png" alt="첼시" onclick="goToTeam('chelsea')" />
+      <img src="https://i.namu.wiki/i/Pv9NYWGfEhphXAKEef1jRvyPlp_d1DJ2ZeQVY5zSo7b8rfHh7RzVGgggNHPthCd5zITHV9m4d9ZjZhOK4I6Mbw.svg" alt="맨유" onclick="goToTeam('man_utd')" />
+      <img src="https://i.namu.wiki/i/TaI0DYEYrNBhHkNDu6DkalFgBMv8NPKfOXMzmeOwtYQ36pSvSkBJ7xs_hXADSz0C-C22G8iGRXqf5p92zK3W2w.svg" alt="토트넘" onclick="goToTeam('tottenham')" />
+    </div>
+  </div>
+
+  <script>
+    function goToTeam(team) {
+      window.location.href = `players.html?team=${team}`;
+    }
+  </script>
+
+</body>
+</html>
