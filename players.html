@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선수 목록</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #0044cc;
+      color: white;
+    }
+    button:hover {
+      background-color: #0066ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>선수 목록</h1>
+  <div id="players-container"></div>
+
+  <script>
+    const playersData = {
+      man_city: [
+        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Rodri_2022.jpg/1200px-Rodri_2022.jpg", info: "로드리 정보..." },
+        { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Erlind_Haaland_2021.jpg/1200px-Erlind_Haaland_2021.jpg", info: "홀란드 정보..." },
+        { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bernardo_Silva_2022.jpg/800px-Bernardo_Silva_2022.jpg", info: "베실바 정보..." },
+        { name: "더브라위너", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/De_Bruyne_2021.jpg/1200px-De_Bruyne_2021.jpg", info: "더브라위너 정보..." },
+        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Ruben_Dias_2020.jpg/800px-Ruben_Dias_2020.jpg", info: "후벵 디아스 정보..." }
+      ],
+      liverpool: [
+        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Mohamed_Salah_2022.jpg/1200px-Mohamed_Salah_2022.jpg", info: "살라 정보..." },
+        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Virgil_van_Dijk_2022.jpg/1200px-Virgil_van_Dijk_2022.jpg", info: "반다이크 정보..." },
+        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guido_Soboslai_2023.jpg/1200px-Guido_Soboslai_2023.jpg", info: "소보슬라이 정보..." },
+        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Alisson_Becker_2022.jpg/1200px-Alisson_Becker_2022.jpg", info: "알리송 정보..." }
+      ],
+      arsenal: [
+        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bukayo_Saka_2022.jpg/1200px-Bukayo_Saka_2022.jpg", info: "사카 정보..." },
+        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Declan_Rice_2022.jpg/1200px-Declan_Rice_2022.jpg", info: "라이스 정보..." },
+        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Odegaard_2023.jpg/1200px-Odegaard_2023.jpg", info: "외데고르 정보..." }
+      ]
+      // 나머지 팀도 추가 가능
+    };
+
+    const team = new URLSearchParams(window.location.search).get("team");
+    const container = document.getElementById("players-container");
+
+    if (playersData[team]) {
+      playersData[team].forEach(player => {
+        const button = document.createElement("button");
+        button.textContent = player.name;
+        button.onclick = () => {
+          window.location.href = `player-info.html?name=${encodeURIComponent(player.name)}&img=${encodeURIComponent(player.img)}&info=${encodeURIComponent(player.info)}`;
+        };
+        container.appendChild(button);
+      });
+    } else {
+      container.innerHTML = "<p>선수 정보가 없습니다.</p>";
+    }
+  </script>
+</body>
+</html>
