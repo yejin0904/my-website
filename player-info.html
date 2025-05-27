@@ -37,7 +37,106 @@
   <script>
     const playersData = {
       man_city: [
+        { name: "홀란드", img: "<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선수 목록</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .player {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
+    }
+    .player img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+    .player-name {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>선수 목록</h1>
+  <div id="players-container"></div>
+
+  <script>
+    const playersData = {
+      man_city: [
         { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Erlind_Haaland_2021.jpg/1200px-Erlind_Haaland_2021.jpg" },
+        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Rodri_2022.jpg/1200px-Rodri_2022.jpg" },
+        { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bernardo_Silva_2022.jpg/800px-Bernardo_Silva_2022.jpg" },
+        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Ruben_Dias_2020.jpg/800px-Ruben_Dias_2020.jpg" }
+      ],
+      liverpool: [
+        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Mohamed_Salah_2022.jpg/1200px-Mohamed_Salah_2022.jpg" },
+        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Virgil_van_Dijk_2022.jpg/1200px-Virgil_van_Dijk_2022.jpg" },
+        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guido_Soboslai_2023.jpg/1200px-Guido_Soboslai_2023.jpg" },
+        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Alisson_Becker_2022.jpg/1200px-Alisson_Becker_2022.jpg" }
+      ],
+      arsenal: [
+        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bukayo_Saka_2022.jpg/1200px-Bukayo_Saka_2022.jpg" },
+        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Declan_Rice_2022.jpg/1200px-Declan_Rice_2022.jpg" },
+        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Odegaard_2023.jpg/1200px-Odegaard_2023.jpg" }
+      ],
+      chelsea: [
+        { name: "콜파머", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Colwill_2022.jpg/1200px-Colwill_2022.jpg" },
+        { name: "무드릭", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Mykhailo_Mudryk_2022.jpg/1200px-Mykhailo_Mudryk_2022.jpg" },
+        { name: "잭슨", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Christopher_Jackson_2022.jpg/1200px-Christopher_Jackson_2022.jpg" }
+      ],
+      man_utd: [
+        { name: "브루노 페르난데스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Bruno_Fernandes_2023.jpg/1200px-Bruno_Fernandes_2023.jpg" },
+        { name: "가르나초", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Garnacho_2023.jpg/1200px-Garnacho_2023.jpg" },
+        { name: "디알로", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Amad_Diallo_2022.jpg/1200px-Amad_Diallo_2022.jpg" }
+      ],
+      tottenham: [
+        { name: "손흥민", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Son_Heung-min_2022.jpg/1200px-Son_Heung-min_2022.jpg" },
+        { name: "메디슨", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/James_Maddison_2023.jpg/1200px-James_Maddison_2023.jpg" },
+        { name: "로메로", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Cristian_Romero_2023.jpg/1200px-Cristian_Romero_2023.jpg" },
+        { name: "판더벤", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Van_den_Boomen_2023.jpg/1200px-Van_den_Boomen_2023.jpg" }
+      ]
+    };
+
+    const team = new URLSearchParams(location.search).get("team");
+    const container = document.getElementById("players-container");
+
+    if (playersData[team]) {
+      playersData[team].forEach(player => {
+        const div = document.createElement("div");
+        div.className = "player";
+
+        const img = document.createElement("img");
+        img.src = player.img;
+        img.alt = player.name;
+
+        const name = document.createElement("div");
+        name.className = "player-name";
+        name.textContent = player.name;
+
+        div.appendChild(img);
+        div.appendChild(name);
+        container.appendChild(div);
+      });
+    } else {
+      container.innerHTML = "<p>선수 정보가 없습니다.</p>";
+    }
+  </script>
+</body>
+</html>
+" },
         { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Rodri_2022.jpg/1200px-Rodri_2022.jpg" },
         { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bernardo_Silva_2022.jpg/800px-Bernardo_Silva_2022.jpg" },
         { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Ruben_Dias_2020.jpg/800px-Ruben_Dias_2020.jpg" }
