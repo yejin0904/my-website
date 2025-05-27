@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선수 정보</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+    }
+    img {
+      width: 300px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="player-name"></h1>
+  <img id="player-img" src="" alt="선수 이미지" />
+  <p id="player-info"></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("player-name").textContent = params.get("name");
+    document.getElementById("player-img").src = params.get("img");
+    document.getElementById("player-info").textContent = params.get("info");
+  </script>
+</body>
+</html>
