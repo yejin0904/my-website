@@ -73,6 +73,35 @@
       color: #FFD700;
     }
 
+    /* 새로 추가한 스타일 */
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 10px 20px;
+      min-width: 300px;
+      max-width: 100%;
+    }
+    .label {
+      color: #FFD700;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .value {
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 70%;
+    }
+
     .back-btn {
       position: fixed;
       bottom: 20px;
@@ -108,6 +137,13 @@
       .info-section {
         text-align: center;
         font-size: 1.1rem;
+      }
+      .info-row {
+        justify-content: center;
+        gap: 10px;
+      }
+      .value {
+        max-width: 60%;
       }
     }
   </style>
@@ -200,14 +236,26 @@
       document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
       document.getElementById("player-name").textContent = playerName;
       document.getElementById("player-img").src = playerData.img;
+
+      // awards 배열을 HTML 리스트로 변환
+      const awardsHTML = playerData.awards && playerData.awards.length
+        ? `<ul style="padding-left: 20px; margin: 4px 0 0 0; list-style-type: disc;">${playerData.awards.map(a => `<li>${a}</li>`).join("")}</ul>`
+        : "정보 없음";
+
       document.getElementById("player-info").innerHTML = `
-        <strong>포지션:</strong> ${playerData.position}<br/>
-        <strong>나이:</strong> ${playerData.age}세<br/>
-        <strong>국적:</strong> ${playerData.nationality}<br/>
-        <strong>키:</strong> ${playerData.height}<br/>
-        <strong>몸무게:</strong> ${playerData.weight}<br/>
-        <strong>최근 시즌 기록:</strong> ${playerData.season}<br/>
-        <strong>수상 경력:</strong> ${playerData.awards ? playerData.awards.join(", ") : "정보 없음"}
+        <div class="info-row"><span class="label">포지션:</span><span class="value">${playerData.position}</span></div>
+        <div class="info-row"><span class="label">나이:</span><span class="value">${playerData.age}세</span></div>
+        <div class="info-row"><span class="label">국적:</span><span class="value">${playerData.nationality}</span></div>
+        <div class="info-row"><span class="label">키:</span><span class="value">${playerData.height}</span></div>
+        <div class="info-row"><span class="label">몸무게:</span><span class="value">${playerData.weight}</span></div>
+        <div class="info-row" style="align-items: flex-start;">
+          <span class="label">최근 시즌 기록:</span>
+          <span class="value">${playerData.season}</span>
+        </div>
+        <div class="info-row" style="align-items: flex-start;">
+          <span class="label">수상 경력:</span>
+          <span class="value">${awardsHTML}</span>
+        </div>
       `;
     } else {
       document.querySelector(".content").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
