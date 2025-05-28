@@ -20,7 +20,7 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       z-index: -1;
-      background-color: #222; /* 조금 밝은 검정 배경 */
+      background-color: #222;
       opacity: 1;
     }
     #background-image {
@@ -36,7 +36,7 @@
     }
     h1 {
       font-size: 3rem;
-      margin-bottom: 100px; /* 제목 아래 여백 더 넓게 */
+      margin-bottom: 100px;
       position: relative;
       z-index: 1;
     }
@@ -53,6 +53,13 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 50px 60px;
+    }
+    .grid-3x2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px 60px;
+      max-width: 960px;
+      margin: 0 auto;
     }
     .player {
       display: flex;
@@ -88,7 +95,9 @@
         { name: "홀란드", img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
         { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
         { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
-        { name: "케빈 데브라이너", img: "https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbt6kbk%2FbtqCvzkMHUE%2FUQ8IJqvNC7Mvfh8lOcooOk%2Fimg.jpg" }
+        { name: "케빈 데브라이너", img: "https://resources.premierleague.com/premierleague/photos/players/250x250/p63219.png" },
+        { name: "후뱅 디아스", img: "https://image.fmkorea.com/files/attach/new3/20240120/33854530/2813613721/6632728993/b9c0bfde260a82656ae6e65a5af7d880.jpg" },
+        { name: "포든", img: "https://www.mancity.com/meta/media/fkblpjr4/phil-foden-nomination.jpg?width=1620" }
       ],
       liverpool: [
         { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
@@ -119,7 +128,6 @@
       ]
     };
 
-    // 팀별 배경 이미지 URL (검정색 기반 투명도 적용)
     const teamBackgrounds = {
       man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
       liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
@@ -138,6 +146,8 @@
 
       if (players.length === 4) {
         container.className = "grid-2x2";
+      } else if (players.length === 6) {
+        container.className = "grid-3x2";
       } else {
         container.className = "players-grid";
       }
@@ -159,7 +169,6 @@
         container.appendChild(div);
       });
 
-      // 배경 이미지 적용
       if (teamBackgrounds[team]) {
         bgDiv.style.backgroundImage = `url(${teamBackgrounds[team]})`;
       } else {
