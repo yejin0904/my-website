@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>선수 정보</title>
   <style>
     body {
@@ -10,7 +10,7 @@
       background-color: #111;
       color: white;
       margin: 0;
-      padding: 40px 20px 80px; /* 아래 공간 확보 */
+      padding: 40px 20px 80px;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
@@ -18,14 +18,11 @@
 
     #background {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      /* 밝기 필터 낮춰서 덜 어둡게 */
       filter: brightness(0.7);
       opacity: 0.6;
       z-index: -1;
@@ -38,31 +35,32 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 120px; /* 간격 더 넓힘 */
+      justify-content: space-between; /* 사진 왼쪽, 정보 오른쪽 배치 */
+      gap: 120px; /* 사진과 정보 사이 간격 넓힘 */
       padding: 30px;
-      background-color: rgba(0, 0, 0, 0.35); /* 약간 더 밝고 투명하게 */
+      background-color: rgba(0, 0, 0, 0.35);
       border-radius: 20px;
       box-shadow: 0 0 40px rgba(255, 255, 255, 0.25);
-      justify-content: flex-start;
     }
 
     .player-img {
-      width: 420px; /* 사진 크기 유지 */
+      width: 460px;   /* 사진 크기 키움 */
       max-width: 100%;
       border-radius: 20px;
       border: 5px solid white;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
       object-fit: cover;
-      /* 확실히 왼쪽, 수직 중앙 정렬 */
-      margin-right: auto;
+      /* 왼쪽 중앙 정렬 */
+      flex-shrink: 0;
       align-self: center;
     }
 
     .info-section {
       flex: 1;
-      text-align: right;
+      text-align: right; /* 오른쪽 정렬 */
       line-height: 1.8;
       font-size: 1.3rem;
+      align-self: center; /* 세로 중앙 */
     }
 
     .player-name {
@@ -101,16 +99,15 @@
       .content {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
+      }
+      .player-img {
+        width: 90%;
+        margin: 0 auto;
       }
       .info-section {
         text-align: center;
         font-size: 1.1rem;
-      }
-      .player-img {
-        width: 90%;
-        margin-bottom: 20px;
-        margin-right: 0;
-        align-self: center;
       }
     }
   </style>
