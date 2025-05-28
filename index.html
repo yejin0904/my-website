@@ -18,13 +18,14 @@
       background: url('https://cdn.pixabay.com/photo/2016/09/02/20/57/soccer-1647574_960_720.jpg') no-repeat center center fixed;
       background-size: cover;
       color: white;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
     body::after {
       content: "";
       position: fixed;
+      top: 0;
       left: 0;
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -34,7 +35,6 @@
       opacity: 0.15;
       pointer-events: none;
       z-index: 0;
-      top: 0;
     }
 
     header {
@@ -68,11 +68,11 @@
     .team-buttons {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      gap: 6vh;
-      padding: 12vh 0 6vh;
-      position: relative;
+      padding: 8vh 2vw;
+      gap: 5vh;
+      max-width: 1200px;
+      margin: 0 auto;
       z-index: 1;
     }
 
@@ -80,15 +80,13 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 6vw;
-      padding: 0 10vw;
+      gap: 4vw;
       width: 100%;
-      box-sizing: border-box;
     }
 
     .row img {
-      width: 200px;
-      height: 200px;
+      width: clamp(120px, 18vw, 200px);
+      height: clamp(120px, 18vw, 200px);
       object-fit: contain;
       border-radius: 10px;
       cursor: pointer;
@@ -107,30 +105,14 @@
         font-size: 6vw;
       }
 
-      .row img {
-        width: 150px;
-        height: 150px;
-      }
-
-      .row {
-        gap: 5vw;
-        padding: 0 8vw;
+      .header-content img {
+        width: 50px;
       }
     }
 
     @media screen and (max-width: 480px) {
       .header-content h1 {
         font-size: 7vw;
-      }
-
-      .row img {
-        width: 130px;
-        height: 130px;
-      }
-
-      .row {
-        gap: 4vw;
-        padding: 0 6vw;
       }
 
       .header-content img {
