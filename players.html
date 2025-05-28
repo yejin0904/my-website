@@ -33,11 +33,6 @@
       border-radius: 12px;
       border: 3px solid #fff;
       box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .player img:hover {
-      transform: scale(1.05);
     }
     .player-name {
       margin-top: 18px;
@@ -98,11 +93,6 @@
         const img = document.createElement("img");
         img.src = player.img;
         img.alt = player.name;
-
-        // 버튼 기능
-        img.onclick = () => {
-          alert(`${player.name}을(를) 선택하셨습니다.`);
-        };
 
         const name = document.createElement("div");
         name.className = "player-name";
