@@ -2,97 +2,116 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>선수 목록</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>선수 정보</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #111;
       color: white;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.5; /* 배경 투명도 */
+      filter: brightness(0.6);
+      z-index: -1;
+    }
+
+    .player-info-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
+      margin-top: 80px;
       text-align: center;
-      padding: 20px;
     }
-    .player {
-      display: inline-block;
-      margin: 20px;
-      text-align: center;
-    }
-    .player img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid #fff;
-    }
+
     .player-name {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .player-description {
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00c6ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 480px) {
+      .player-name {
+        font-size: 2rem;
+      }
+      .player-description {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>선수 목록</h1>
-  <div id="players-container"></div>
+  <div id="background-image"></div>
+
+  <div class="player-info-container">
+    <div id="player-name" class="player-name"></div>
+    <div id="player-description" class="player-description"></div>
+    <a id="back-link" class="back-link" href="#">← 선수 목록으로 돌아가기</a>
+  </div>
 
   <script>
-    const playersData = {
-      man_city: [
-        { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Erling_Haaland_2023_%28cropped_square%29.jpg/640px-Erling_Haaland_2023_%28cropped_square%29.jpg" },
-        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Rodri_2022.jpg" },
-        { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bernardo_Silva_2022.jpg" },
-        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Ruben_Dias_2022.jpg" }
-      ],
-      liverpool: [
-        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Mohamed_Salah_2022.jpg" },
-        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Virgil_van_Dijk_2022.jpg" },
-        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Guido_Soboslai_2023.jpg" },
-        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Alisson_Becker_2022.jpg" }
-      ],
-      arsenal: [
-        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bukayo_Saka_2022.jpg" },
-        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Declan_Rice_2022.jpg" },
-        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Odegaard_2023.jpg" }
-      ],
-      chelsea: [
-        { name: "콜파머", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Lewis_Hall_2022.jpg" },
-        { name: "무드릭", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Mykhailo_Mudryk_2022.jpg" },
-        { name: "잭슨", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Christopher_Jackson_2022.jpg" }
-      ],
-      man_utd: [
-        { name: "브루노 페르난데스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bruno_Fernandes_2023.jpg" },
-        { name: "가르나초", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Garnacho_2023.jpg" },
-        { name: "디알로", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Amad_Diallo_2022.jpg" }
-      ],
-      tottenham: [
-        { name: "손흥민", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Son_Heung-min_2016.jpg/640px-Son_Heung-min_2016.jpg" },
-        { name: "메디슨", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/James_Maddison_2023.jpg" },
-        { name: "로메로", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Cristian_Romero_2023.jpg" },
-        { name: "판더벤", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Van_den_Boomen_2023.jpg" }
-      ]
+    const playerInfoData = {
+      "홀란드": {
+        img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
+        description: "노르웨이 출신 스트라이커. 폭발적인 득점력과 피지컬을 겸비한 맨시티의 핵심 공격수."
+      },
+      "로드리": {
+        img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+        description: "스페인 미드필더. 안정적인 수비력과 빌드업 능력을 가진 맨시티의 핵심 중원 자원."
+      },
+      "손흥민": {
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s",
+        description: "한국의 축구 영웅. 양발을 자유자재로 쓰며 빠른 드리블과 강력한 슈팅이 특징인 토트넘의 주장."
+      },
+      // 필요한 선수 더 추가 가능
     };
 
-    const team = new URLSearchParams(location.search).get("team");
-    const container = document.getElementById("players-container");
+    const params = new URLSearchParams(location.search);
+    const playerName = params.get("player");
+    const teamName = params.get("team");
 
-    if (playersData[team]) {
-      playersData[team].forEach(player => {
-        const div = document.createElement("div");
-        div.className = "player";
+    const player = playerInfoData[playerName];
 
-        const img = document.createElement("img");
-        img.src = player.img;
-        img.alt = player.name;
-
-        const name = document.createElement("div");
-        name.className = "player-name";
-        name.textContent = player.name;
-
-        div.appendChild(img);
-        div.appendChild(name);
-        container.appendChild(div);
-      });
+    if (player) {
+      document.getElementById("background-image").style.backgroundImage = `url(${player.img})`;
+      document.getElementById("player-name").textContent = playerName;
+      document.getElementById("player-description").textContent = player.description;
+      document.getElementById("back-link").href = `players.html?team=${teamName}`;
     } else {
-      container.innerHTML = "<p>선수 정보가 없습니다.</p>";
+      document.querySelector(".player-info-container").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
     }
   </script>
 </body>
