@@ -57,7 +57,7 @@
     .info-section {
       flex: 1;
       text-align: right;
-      line-height: 1.6;
+      line-height: 1.8;
       font-size: 1.4rem;
       align-self: center;
     }
@@ -73,40 +73,31 @@
       color: #FFD700;
     }
 
-    /* 수정된 스타일 */
+    /* 새로 수정한 스타일 */
     .player-info {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
     .info-row {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start; /* 두 줄일때도 위쪽 정렬 */
-      /* 배경 제거 */
-      padding: 0;
-      border-radius: 0;
+      align-items: center;
       min-width: 300px;
       max-width: 100%;
-      word-wrap: break-word; /* 긴 단어도 줄바꿈 */
+      white-space: nowrap; /* 줄바꿈 제거 */
     }
     .label {
       color: #FFD700;
       font-weight: 600;
       flex-shrink: 0;
-      margin-right: 12px;
-      white-space: nowrap; /* 라벨은 줄바꿈 안함 */
     }
     .value {
       text-align: right;
-      white-space: normal; /* 줄바꿈 허용 */
-      max-width: 70%;
-      overflow-wrap: break-word;
-      /* 최대 2줄까지 보이도록 높이 제한 + 줄 높이 설정 */
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      /* 줄임표시 추가 옵션 */
       overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 70%;
     }
 
     .back-btn {
@@ -148,6 +139,7 @@
       .info-row {
         justify-content: center;
         gap: 10px;
+        white-space: normal; /* 모바일에서는 줄바꿈 허용 */
       }
       .value {
         max-width: 60%;
@@ -180,8 +172,7 @@
             position: "스트라이커",
             age: 24,
             nationality: "노르웨이",
-            season: "24-25 프리미어 리그"
-              "선발 43경기 교체 1경기 31득점 4도움",
+            season: "24-25 프리미어 리그 선발 43경기 교체 1경기 31득점 4도움",
             awards: [
               "골든 부트 2022",
               "프리미어리그 올해의 선수 2023"
@@ -206,8 +197,7 @@
             position: "미드필더, 윙어",
             age: 30,
             nationality: "포르투갈",
-            season: "24-25 시즌 선발 프리미어 리그"
-              "22경기 교체 4경기 2득점 4도움",
+            season: "24-25 시즌 선발 프리미어 리그 22경기 교체 4경기 2득점 4도움",
             awards: [
               "프리미어 리그 올해의 영 플레이어 2024"
             ]
@@ -246,24 +236,11 @@
       document.getElementById("player-name").textContent = playerName;
       document.getElementById("player-img").src = playerData.img;
 
+      // awards 배열을 HTML 리스트로 변환
       const awardsHTML = playerData.awards && playerData.awards.length
         ? `<ul style="padding-left: 20px; margin: 4px 0 0 0; list-style-type: disc;">${playerData.awards.map(a => `<li>${a}</li>`).join("")}</ul>`
         : "정보 없음";
 
       document.getElementById("player-info").innerHTML = `
         <div class="info-row"><span class="label">포지션:</span><span class="value">${playerData.position}</span></div>
-        <div class="info-row"><span class="label">나이:</span><span class="value">${playerData.age}세</span></div>
-        <div class="info-row"><span class="label">키/몸무게:</span><span class="value">${playerData.height} / ${playerData.weight}</span></div>
-        <div class="info-row"><span class="label">국적:</span><span class="value">${playerData.nationality}</span></div>
-        <div class="info-row"><span class="label">시즌 기록:</span><span class="value">${playerData.season}</span></div>
-        <div class="info-row"><span class="label">수상 경력:</span><span class="value">${awardsHTML}</span></div>
-      `;
-    } else {
-      document.getElementById("player-name").textContent = "선수 정보 없음";
-      document.getElementById("player-info").textContent = "";
-      document.getElementById("player-img").style.display = "none";
-      document.getElementById("background").style.backgroundImage = "";
-    }
-  </script>
-</body>
-</html>
+        <div class="
