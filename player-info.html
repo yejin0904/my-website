@@ -3,76 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>선수 정보</title>
+  <title>팀 선수 목록</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #111;
       color: white;
-      margin: 0;
       padding: 40px 20px 80px;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
     }
 
-    #background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: brightness(0.7);
-      opacity: 0.6;
-      z-index: -1;
-      transition: background-image 0.5s ease-in-out;
-    }
-
-    .content {
-      max-width: 1200px;
-      margin: 80px auto 0; /* 약간 아래로 내림 */
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 160px;
-      padding: 50px;
-      background-color: rgba(255, 255, 255, 0.12); /* 더 진한 투명도 */
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
-    }
-
-    .player-img {
-      width: 500px;
-      max-width: 100%;
-      border-radius: 20px;
-      border: 5px solid white;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-      object-fit: cover;
-      flex-shrink: 0;
-      align-self: center;
-    }
-
-    .info-section {
-      flex: 1;
-      text-align: right;
-      line-height: 1.8;
-      font-size: 1.3rem;
-      align-self: center;
-    }
-
-    .player-name {
-      font-size: 2.7rem;
-      margin-bottom: 25px;
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
       font-weight: 900;
       letter-spacing: 1.2px;
     }
 
-    .player-info strong {
-      color: #FFD700;
+    .team-section {
+      max-width: 600px;
+      margin: 0 auto 60px;
+      background-color: rgba(255, 255, 255, 0.12);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
     }
 
+    .team-name {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: 800;
+      color: #FFD700;
+      text-align: center;
+    }
+
+    ul.player-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.player-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #444;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    ul.player-list li:last-child {
+      border-bottom: none;
+    }
+
+    ul.player-list li a {
+      color: #FFD700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    ul.player-list li a:hover {
+      color: #f0c040;
+    }
+
+    /* 목록 버튼 위치 동일하게 */
     .back-btn {
       position: fixed;
       bottom: 20px;
@@ -94,100 +90,26 @@
       background-color: #f0c040;
       color: #111;
     }
-
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-      }
-      .player-img {
-        width: 90%;
-        margin: 0 auto;
-      }
-      .info-section {
-        text-align: center;
-        font-size: 1.1rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <div id="background"></div>
+  <h1>팀 선수 목록</h1>
 
-  <div class="content">
-    <img id="player-img" class="player-img" src="" alt="선수 이미지" />
-    <div class="info-section">
-      <div class="player-name" id="player-name">선수 이름</div>
-      <div class="player-info" id="player-info"></div>
-    </div>
+  <div class="team-section">
+    <div class="team-name">맨체스터 시티 (Man City)</div>
+    <ul class="player-list">
+      <li><a href="player_info.html?team=man_city&player=홀란드">홀란드</a></li>
+      <li><a href="player_info.html?team=man_city&player=로드리">로드리</a></li>
+    </ul>
   </div>
 
-  <a class="back-btn" href="javascript:history.back()">← 목록으로</a>
+  <div class="team-section">
+    <div class="team-name">리버풀 (Liverpool)</div>
+    <ul class="player-list">
+      <li><a href="player_info.html?team=liverpool&player=살라">살라</a></li>
+    </ul>
+  </div>
 
-  <script>
-    const playersInfo = {
-      man_city: {
-        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
-        players: {
-          "홀란드": {
-            img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
-            height: "195cm",
-            weight: "94kg",
-            position: "스트라이커",
-            age: 23,
-            nationality: "노르웨이",
-            season: "22-23 시즌 53경기 52골 9도움"
-          },
-          "로드리": {
-            img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-            height: "191cm",
-            weight: "82kg",
-            position: "미드필더",
-            age: 28,
-            nationality: "스페인",
-            season: "22-23 시즌 56경기 4골 7도움"
-          }
-        }
-      },
-      liverpool: {
-        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
-        players: {
-          "살라": {
-            img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-            height: "175cm",
-            weight: "71kg",
-            position: "윙어",
-            age: 31,
-            nationality: "이집트",
-            season: "22-23 시즌 51경기 30골 16도움"
-          }
-        }
-      }
-    };
-
-    const params = new URLSearchParams(location.search);
-    const team = params.get("team");
-    const playerName = params.get("player");
-
-    const teamData = playersInfo[team];
-    const playerData = teamData?.players[playerName];
-
-    if (teamData && playerData) {
-      document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
-      document.getElementById("player-name").textContent = playerName;
-      document.getElementById("player-img").src = playerData.img;
-      document.getElementById("player-info").innerHTML = `
-        <strong>포지션:</strong> ${playerData.position}<br/>
-        <strong>나이:</strong> ${playerData.age}세<br/>
-        <strong>국적:</strong> ${playerData.nationality}<br/>
-        <strong>키:</strong> ${playerData.height}<br/>
-        <strong>몸무게:</strong> ${playerData.weight}<br/>
-        <strong>최근 시즌 기록:</strong> ${playerData.season}
-      `;
-    } else {
-      document.querySelector(".content").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
-    }
-  </script>
+  <a class="back-btn" href="javascript:history.back()">← 이전으로</a>
 </body>
 </html>
