@@ -7,89 +7,62 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #000; /* 검정 배경 */
-      color: #fff;
+      background-color: #111;
+      color: white;
       text-align: center;
       padding: 40px;
-      overflow: hidden;
       position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-
-    /* 배경 이미지 투명하게 (검정색 기반) */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #111;
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
-      background-position: center;
-      opacity: 0.15;
-      filter: brightness(0.7);
+      opacity: 0.15; /* 배경 이미지 투명도 */
       z-index: -1;
       pointer-events: none;
+      transition: background-image 0.5s ease-in-out;
     }
-
-    body.man_city::before {
-      background-image: url('https://img1.newsis.com/2024/05/20/NISI20240520_0001111378_web.jpg');
-    }
-
-    body.liverpool::before {
-      background-image: url('https://d2k5miyk6y5zf0.cloudfront.net/article/MYH/20200723/MYH20200723015900038.jpg');
-    }
-
-    body.tottenham::before {
-      background-image: url('https://upload2.inven.co.kr/upload/2019/06/02/bbs/i15508252830.jpg');
-    }
-
-    body.arsenal::before {
-      background-image: url('https://upload3.inven.co.kr/upload/2020/06/08/bbs/i13811178377.jpg?MW=800');
-    }
-
-    body.man_utd::before {
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTly786ICm5VgTyC9_Zmyv0Yz5M78HzwIj3HQ&s');
-    }
-
-    body.chelsea::before {
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThY8c-QqiNUY7K__wlPNCe_7JYeZccoIbWxg&s');
-    }
-
     h1 {
       font-size: 3rem;
-      margin-bottom: 100px; /* 제목 아래 여백을 더 많이 */
+      margin-bottom: 100px; /* 선수 목록 아래로 충분히 내리기 */
+      position: relative;
+      z-index: 1;
     }
-
+    #players-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     .players-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 50px 60px;
-      max-width: 1200px;
-      margin: 0 auto;
     }
-
     .grid-2x2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 50px 60px;
-      margin-top: 40px;
     }
-
     .player {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .player img {
       width: 240px;
       height: 240px;
       object-fit: cover;
       border-radius: 16px;
       border: 4px solid #fff;
-      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
     }
-
     .player-name {
       margin-top: 20px;
       font-size: 1.8rem;
@@ -138,17 +111,40 @@
       ]
     };
 
+    // 팀별 배경 이미지 (검정색 위에 투명도 0.15 적용됨)
+    const teamBackgrounds = {
+      man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+      liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+      arsenal: "https://p4.wallpaperbetter.com/wallpaper/296/389/257/soccer-arsenal-f-c-logo-wallpaper-preview.jpg",
+      chelsea: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Ntuca3GocV2osgwqVmdmvseYRF5qA8mMEtGzvVu5gK3fsQHWoLv24ZhcrTr3Wa3ytgo&usqp=CAU",
+      man_utd: "https://p4.wallpaperbetter.com/wallpaper/321/1002/349/soccer-manchester-united-f-c-logo-wallpaper-preview.jpg",
+      tottenham: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg"
+    };
+
     const team = new URLSearchParams(location.search).get("team");
     const container = document.getElementById("players-container");
 
-    if (team) {
-      document.body.classList.add(team);
+    // 배경 이미지 셋팅
+    if(team && teamBackgrounds[team]){
+      document.body.style.setProperty('--bg-image-url', `url(${teamBackgrounds[team]})`);
+      document.body.style.backgroundImage = `none`; // 기본 배경 제거
+      // ::before에 배경 이미지 적용
+      const style = document.createElement('style');
+      style.innerHTML = `
+        body::before {
+          background-image: url(${teamBackgrounds[team]});
+        }
+      `;
+      document.head.appendChild(style);
     }
 
     if (playersData[team]) {
       const players = playersData[team];
+
       if (players.length === 4) {
         container.className = "grid-2x2";
+      } else {
+        container.className = "players-grid";
       }
 
       players.forEach(player => {
