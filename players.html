@@ -10,88 +10,108 @@
       background-color: #111;
       color: white;
       text-align: center;
-      padding: 40px;
-      position: relative;
+      margin: 0;
+      padding: 40px 20px;
       min-height: 100vh;
+      position: relative;
       overflow-x: hidden;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -1;
-      background-color: #222;
-      opacity: 1;
-    }
+
     #background-image {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -2;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-size: cover;
       background-position: center;
-      filter: brightness(0.65);
-      opacity: 0.45;
-      pointer-events: none;
-      transition: background-image 0.5s ease-in-out;
+      background-repeat: no-repeat;
+      filter: brightness(0.5);
+      opacity: 0.5;
+      z-index: -1;
     }
+
     h1 {
       font-size: 3rem;
-      margin-bottom: 100px;
-      position: relative;
+      margin-bottom: 80px;
       z-index: 1;
+      position: relative;
     }
-    .players-grid {
+
+    .players-grid,
+    .grid-2x2,
+    .grid-3x2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 50px 60px;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
       z-index: 1;
+      position: relative;
     }
+
+    .players-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
     .grid-2x2 {
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 50px 60px;
     }
+
     .grid-3x2 {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 50px 60px;
-      max-width: 960px;
-      margin: 0 auto;
     }
+
     .player {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .player img {
-      width: 240px;
-      height: 240px;
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 16px;
       border: 4px solid #fff;
       box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
-      cursor: pointer; /* 클릭 가능하게 변경 */
       transition: transform 0.2s ease;
+      cursor: pointer;
     }
+
     .player img:hover {
       transform: scale(1.05);
     }
+
     .player-name {
-      margin-top: 20px;
-      font-size: 1.8rem;
+      margin-top: 16px;
+      font-size: 1.5rem;
       font-weight: bold;
     }
-    p {
-      font-size: 1.2rem;
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .player-name {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .player-name {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
   <h1>선수 목록</h1>
-  <div id="players-container" class="players-grid"></div>
+  <div id="players-container"></div>
   <div id="background-image"></div>
 
   <script>
@@ -137,7 +157,7 @@
       man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
       liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
       arsenal: "https://p4.wallpaperbetter.com/wallpaper/296/389/257/soccer-arsenal-f-c-logo-wallpaper-preview.jpg",
-      chelsea: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Ntuca3GocV2osgwqVmdmvseYRF5qA8mMEtGzvVu5gK3fsQHWoLv24ZhcrTr3Wa3ytgo&usqp=CAU",
+      chelsea: "https://p4.wallpaperbetter.com/wallpaper/192/46/279/chelsea-football-club-chelsea-fc-wallpaper-preview.jpg",
       man_utd: "https://p4.wallpaperbetter.com/wallpaper/321/1002/349/soccer-manchester-united-f-c-logo-wallpaper-preview.jpg",
       tottenham: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg"
     };
@@ -164,7 +184,6 @@
         const img = document.createElement("img");
         img.src = player.img;
         img.alt = player.name;
-        img.style.cursor = "pointer";
         img.addEventListener("click", () => {
           const playerParam = encodeURIComponent(player.name);
           window.location.href = `player-info.html?team=${team}&player=${playerParam}`;
@@ -179,14 +198,9 @@
         container.appendChild(div);
       });
 
-      if (teamBackgrounds[team]) {
-        bgDiv.style.backgroundImage = `url(${teamBackgrounds[team]})`;
-      } else {
-        bgDiv.style.backgroundImage = "";
-      }
+      bgDiv.style.backgroundImage = `url(${teamBackgrounds[team]})`;
     } else {
       container.innerHTML = "<p>선수 정보가 없습니다.</p>";
-      bgDiv.style.backgroundImage = "";
     }
   </script>
 </body>
