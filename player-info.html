@@ -6,112 +6,123 @@
   <title>선수 정보</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
       font-family: 'Poppins', sans-serif;
+      background-color: #111;
       color: white;
+      margin: 0;
+      padding: 40px 20px;
       min-height: 100vh;
       position: relative;
-      overflow: hidden;
     }
 
-    #background-image {
+    #background {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.5; /* 배경 투명도 */
-      filter: brightness(0.6);
+      filter: brightness(0.5);
+      opacity: 0.5;
       z-index: -1;
     }
 
-    .player-info-container {
+    .content {
       max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 20px;
-      background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
-      margin-top: 80px;
+      margin: auto;
       text-align: center;
     }
 
-    .player-name {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 20px;
+    .player-img {
+      width: 300px;
+      border-radius: 20px;
+      border: 5px solid white;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
 
-    .player-description {
-      font-size: 1.3rem;
-      line-height: 1.6;
-    }
-
-    a.back-link {
-      display: inline-block;
+    .player-info {
       margin-top: 30px;
-      color: #00c6ff;
-      text-decoration: none;
+      font-size: 1.3rem;
+      line-height: 2;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 10px 20px;
+      background-color: white;
+      color: black;
+      border-radius: 10px;
       font-weight: bold;
-    }
-
-    a.back-link:hover {
-      text-decoration: underline;
-    }
-
-    @media screen and (max-width: 480px) {
-      .player-name {
-        font-size: 2rem;
-      }
-      .player-description {
-        font-size: 1.1rem;
-      }
+      cursor: pointer;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div id="background-image"></div>
-
-  <div class="player-info-container">
-    <div id="player-name" class="player-name"></div>
-    <div id="player-description" class="player-description"></div>
-    <a id="back-link" class="back-link" href="#">← 선수 목록으로 돌아가기</a>
+  <div id="background"></div>
+  <div class="content">
+    <h1 id="player-name">선수 이름</h1>
+    <img id="player-img" class="player-img" src="" alt="선수 이미지" />
+    <div class="player-info" id="player-info"></div>
+    <a class="back-btn" href="javascript:history.back()">← 목록으로</a>
   </div>
 
   <script>
-    const playerInfoData = {
-      "홀란드": {
-        img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
-        description: "노르웨이 출신 스트라이커. 폭발적인 득점력과 피지컬을 겸비한 맨시티의 핵심 공격수."
+    const playersInfo = {
+      man_city: {
+        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+        players: {
+          "홀란드": {
+            img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
+            height: "195cm",
+            weight: "94kg",
+            season: "22-23 시즌 53경기 52골 9도움"
+          },
+          "로드리": {
+            img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+            height: "191cm",
+            weight: "82kg",
+            season: "22-23 시즌 56경기 4골 7도움"
+          }
+          // 나머지 선수도 여기에 추가
+        }
       },
-      "로드리": {
-        img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-        description: "스페인 미드필더. 안정적인 수비력과 빌드업 능력을 가진 맨시티의 핵심 중원 자원."
-      },
-      "손흥민": {
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s",
-        description: "한국의 축구 영웅. 양발을 자유자재로 쓰며 빠른 드리블과 강력한 슈팅이 특징인 토트넘의 주장."
-      },
-      // 필요한 선수 더 추가 가능
+      liverpool: {
+        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+        players: {
+          "살라": {
+            img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+            height: "175cm",
+            weight: "71kg",
+            season: "22-23 시즌 51경기 30골 16도움"
+          }
+          // 나머지 선수도 여기에 추가
+        }
+      }
+      // 다른 팀들도 여기에 추가
     };
 
     const params = new URLSearchParams(location.search);
+    const team = params.get("team");
     const playerName = params.get("player");
-    const teamName = params.get("team");
 
-    const player = playerInfoData[playerName];
+    const teamData = playersInfo[team];
+    const playerData = teamData?.players[playerName];
 
-    if (player) {
-      document.getElementById("background-image").style.backgroundImage = `url(${player.img})`;
+    if (teamData && playerData) {
+      document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
       document.getElementById("player-name").textContent = playerName;
-      document.getElementById("player-description").textContent = player.description;
-      document.getElementById("back-link").href = `players.html?team=${teamName}`;
+      document.getElementById("player-img").src = playerData.img;
+      document.getElementById("player-info").innerHTML = `
+        <strong>키:</strong> ${playerData.height}<br/>
+        <strong>몸무게:</strong> ${playerData.weight}<br/>
+        <strong>최근 시즌 기록:</strong> ${playerData.season}
+      `;
     } else {
-      document.querySelector(".player-info-container").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
+      document.querySelector(".content").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
     }
   </script>
 </body>
