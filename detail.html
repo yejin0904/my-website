@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>선수 정보</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      color: white;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.4;
+      z-index: -1;
+      filter: brightness(0.4);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .player-img {
+      max-width: 400px;
+      border-radius: 20px;
+      border: 4px solid white;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .info {
+      max-width: 500px;
+      background-color: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .info h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+
+    .info p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+      .player-img {
+        width: 90%;
+      }
+      .info {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="background"></div>
+  <div class="content" id="content"></div>
+
+  <script>
+    const players = {
+      "man_city": {
+        "홀란드": {
+          img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
+          position: "FW",
+          age: 24,
+          nationality: "노르웨이",
+          height: "195cm",
+          weight: "94kg",
+          stats: "22골 5도움 (2024-25)"
+        },
+        "로드리": {
+          img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg",
+          position: "MF",
+          age: 27,
+          nationality: "스페인",
+          height: "191cm",
+          weight: "82kg",
+          stats: "5골 9도움 (2024-25)"
+        }
+      },
+      "liverpool": {
+        "살라": {
+          img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg",
+          position: "FW",
+          age: 32,
+          nationality: "이집트",
+          height: "175cm",
+          weight: "71kg",
+          stats: "18골 8도움 (2024-25)"
+        }
+      }
+    };
+
+    const teamBackgrounds = {
+      man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+      liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+      arsenal: "https://p4.wallpaperbetter.com/wallpaper/296/389/257/soccer-arsenal-f-c-logo-wallpaper-preview.jpg",
+      chelsea: "https://p4.wallpaperbetter.com/wallpaper/331/909/309/soccer-chelsea-f-c-logo-wallpaper-preview.jpg",
+      man_utd: "https://p4.wallpaperbetter.com/wallpaper/321/1002/349/soccer-manchester-united-f-c-logo-wallpaper-preview.jpg",
+      tottenham: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg"
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const team = urlParams.get("team");
+    const playerName = urlParams.get("player");
+
+    const player = players[team]?.[playerName];
+
+    const bg = document.getElementById("background");
+    bg.style.backgroundImage = `url(${teamBackgrounds[team] || ""})`;
+
+    const container = document.getElementById("content");
+
+    if (player) {
+      const img = document.createElement("img");
+      img.className = "player-img";
+      img.src = player.img;
+      img.alt = playerName;
+
+      const info = document.createElement("div");
+      info.className = "info";
+      info.innerHTML = `
+        <h2>${playerName}</h2>
+        <p><strong>포지션:</strong> ${player.position}</p>
+        <p><strong>나이:</strong> ${player.age}세</p>
+        <p><strong>국적:</strong> ${player.nationality}</p>
+        <p><strong>키:</strong> ${player.height}</p>
+        <p><strong>몸무게:</strong> ${player.weight}</p>
+        <p><strong>시즌 기록:</strong> ${player.stats}</p>
+      `;
+
+      container.appendChild(img);
+      container.appendChild(info);
+    } else {
+      container.innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
+    }
+  </script>
+</body>
+</html>
