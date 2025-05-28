@@ -58,7 +58,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 5vh;
+      gap: 6vh;
       padding: 5vh 0;
       position: relative;
       z-index: 1;
@@ -68,7 +68,10 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 4vw;
+      gap: 6vw;
+      padding: 0 10vw;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .row img {
@@ -96,6 +99,11 @@
         width: 140px;
         height: 140px;
       }
+
+      .row {
+        gap: 5vw;
+        padding: 0 8vw;
+      }
     }
 
     @media screen and (max-width: 480px) {
@@ -106,6 +114,11 @@
       .row img {
         width: 120px;
         height: 120px;
+      }
+
+      .row {
+        gap: 4vw;
+        padding: 0 6vw;
       }
     }
   </style>
