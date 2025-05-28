@@ -46,7 +46,19 @@
       z-index: 1;
     }
 
-    header h1 {
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .header-content img {
+      width: 60px;
+      height: auto;
+    }
+
+    .header-content h1 {
       font-size: 3.5vw;
       margin: 0;
       color: #ffffff;
@@ -59,7 +71,7 @@
       justify-content: center;
       align-items: center;
       gap: 6vh;
-      padding: 12vh 0 6vh; /* ⬅ 사진을 조금 더 아래로 */
+      padding: 12vh 0 6vh;
       position: relative;
       z-index: 1;
     }
@@ -75,8 +87,8 @@
     }
 
     .row img {
-      width: 200px; /* ⬅ 크기 증가 */
-      height: 200px; /* ⬅ 크기 증가 */
+      width: 200px;
+      height: 200px;
       object-fit: contain;
       border-radius: 10px;
       cursor: pointer;
@@ -91,7 +103,7 @@
     }
 
     @media screen and (max-width: 768px) {
-      header h1 {
+      .header-content h1 {
         font-size: 6vw;
       }
 
@@ -107,7 +119,7 @@
     }
 
     @media screen and (max-width: 480px) {
-      header h1 {
+      .header-content h1 {
         font-size: 7vw;
       }
 
@@ -120,13 +132,21 @@
         gap: 4vw;
         padding: 0 6vw;
       }
+
+      .header-content img {
+        width: 40px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>EPL TOP 6</h1>
+    <div class="header-content">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 왼쪽" />
+      <h1>EPL TOP 6</h1>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 오른쪽" />
+    </div>
   </header>
 
   <div class="team-buttons">
