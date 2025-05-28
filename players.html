@@ -13,71 +13,80 @@
       padding: 40px;
     }
     .players-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      max-width: 1000px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 50px 60px;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px 60px;
     }
     .player {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 200px;
     }
     .player img {
-      width: 200px;
-      height: 200px;
+      width: 240px;
+      height: 240px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      border: 4px solid #fff;
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
     }
     .player-name {
-      margin-top: 12px;
-      font-size: 1.4rem;
+      margin-top: 20px;
+      font-size: 1.8rem;
       font-weight: bold;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 60px;
     }
   </style>
 </head>
 <body>
-  <h1 style="font-size: 2.5rem; margin-bottom: 50px;">선수 목록</h1>
+  <h1>선수 목록</h1>
   <div id="players-container" class="players-grid"></div>
 
   <script>
     const playersData = {
       man_city: [
-        { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Erling_Haaland_2023.jpg" },
-        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Rodri_2023.jpg" },
-        { name: "베르나르두 실바", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Bernardo_Silva_2023.jpg" },
-        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/R%C3%BAben_Dias_2023.jpg" }
+        { name: "홀란드", img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
+        { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+        { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
+        { name: "후벵 디아스", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/kz/2024/11/15/news-p.v1.20241115.611f4aa7904049dcadfd67deedbdfcdf_P1.jpg" }
       ],
+      // 생략된 데이터는 동일하게 유지
       liverpool: [
-        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Mohamed_Salah_2023.jpg" },
-        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Virgil_van_Dijk_2023.jpg" },
-        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Dominik_Szoboszlai_2023.jpg" },
-        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Alisson_Becker_2023.jpg" }
+        { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+        { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
+        { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
+        { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
       ],
       arsenal: [
-        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Bukayo_Saka_2023.jpg" },
-        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Declan_Rice_2023.jpg" },
-        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Martin_%C3%98degaard_2023.jpg" }
+        { name: "사카", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s" },
+        { name: "라이스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s" },
+        { name: "외데고르", img: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg" }
       ],
       chelsea: [
-        { name: "콜 파머", img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Cole_Palmer_2023.jpg" },
-        { name: "무드릭", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Mykhailo_Mudryk_2023.jpg" },
-        { name: "잭슨", img: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Nicolas_Jackson_2023.jpg" }
+        { name: "콜파머", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOyZIgv7DzRNY_EIHWmTgUORqODviQBKnGw&s" },
+        { name: "무드릭", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOn2fpARcDxxf9FrjkP9kVGvDlnNDlL8qd7w&s" },
+        { name: "잭슨", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfEgzzlz9BkbIXqNvCGMcRgDSq4uPqNwmPFQ&s" }
       ],
       man_utd: [
-        { name: "브루노 페르난데스", img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bruno_Fernandes_2023.jpg" },
-        { name: "가르나초", img: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Alejandro_Garnacho_2023.jpg" },
-        { name: "디알로", img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Amad_Diallo_2023.jpg" }
+        { name: "브루노 페르난데스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGt0w0odyAhFrem9Uc7D0rfEsfbIvEsUnpFg&s" },
+        { name: "가르나초", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIVktSdclr3SW0cwAMFZGs17rh95bFqTbog&s" },
+        { name: "디알로", img: "https://news.kbs.co.kr/data/news/2025/01/10/20250110_9vv9M2.jpg" }
       ],
       tottenham: [
-        { name: "손흥민", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Son_Heung-min_2023.jpg" },
-        { name: "메디슨", img: "https://upload.wikimedia.org/wikipedia/commons/9/9e/James_Maddison_2023.jpg" },
-        { name: "로메로", img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Cristian_Romero_2023.jpg" },
-        { name: "판더벤", img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Micky_van_de_Ven_2023.jpg" }
+        { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
+        { name: "메디슨", img: "https://static.independent.co.uk/2025/01/25/12/ff6076d4bf0d2348a2be700175e78d82Y29udGVudHNlYXJjaGFwaSwxNzM3ODE4NTg3-2.78775910.jpg" },
+        { name: "로메로", img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" },
+        { name: "판더벤", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" }
       ]
     };
 
@@ -85,7 +94,14 @@
     const container = document.getElementById("players-container");
 
     if (playersData[team]) {
-      playersData[team].forEach(player => {
+      const players = playersData[team];
+
+      // 4명일 경우 2x2 그리드 적용
+      if (players.length === 4) {
+        container.className = "grid-2x2";
+      }
+
+      players.forEach(player => {
         const div = document.createElement("div");
         div.className = "player";
 
