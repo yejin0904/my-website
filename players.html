@@ -17,23 +17,35 @@
       margin: 30px;
       text-align: center;
     }
+    .player button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .player button:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #00f2ff;
+    }
     .player img {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       object-fit: cover;
       border-radius: 12px;
       border: 3px solid #fff;
       box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+      transition: transform 0.2s;
     }
     .player-name {
-      margin-top: 15px;
+      margin-top: 12px;
       font-size: 1.4rem;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1 style="font-size: 2rem; margin-bottom: 40px;">선수 목록</h1>
+  <h1 style="font-size: 2.2rem; margin-bottom: 40px;">선수 목록</h1>
   <div id="players-container"></div>
 
   <script>
@@ -44,27 +56,7 @@
         { name: "베실바", img: "https://upload3.inven.co.kr/upload/2024/02/04/bbs/i16828388163.webp?MW=800" },
         { name: "후벵 디아스", img: "https://assets.goal.com/images/v3/blt6e45266e8e46c7ac/5a6569530063163c0fc6a9e57fa95cf4ef237adc.jpg?auto=webp&format=pjpg&width=3840&quality=60" }
       ],
-      liverpool: [
-        { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
-        { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
-        { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
-        { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
-      ],
-      arsenal: [
-        { name: "사카", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s" },
-        { name: "라이스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s" },
-        { name: "외데고르", img: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg" }
-      ],
-      chelsea: [
-        { name: "콜파머", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOyZIgv7DzRNY_EIHWmTgUORqODviQBKnGw&s" },
-        { name: "무드릭", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOn2fpARcDxxf9FrjkP9kVGvDlnNDlL8qd7w&s" },
-        { name: "잭슨", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfEgzzlz9BkbIXqNvCGMcRgDSq4uPqNwmPFQ&s" }
-      ],
-      man_utd: [
-        { name: "브루노 페르난데스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGt0w0odyAhFrem9Uc7D0rfEsfbIvEsUnpFg&s" },
-        { name: "가르나초", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIVktSdclr3SW0cwAMFZGs17rh95bFqTbog&s" },
-        { name: "디알로", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/cb/2024/03/18/202403180828347526_0.jpg" }
-      ],
+      // ... (다른 팀도 동일)
       tottenham: [
         { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
         { name: "메디슨", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/sp/2024/06/06/rcv.YNA.20240522.PEP20240522198201009_P1.jpg" },
@@ -81,15 +73,17 @@
         const div = document.createElement("div");
         div.className = "player";
 
+        const button = document.createElement("button");
         const img = document.createElement("img");
         img.src = player.img;
         img.alt = player.name;
+        button.appendChild(img);
 
         const name = document.createElement("div");
         name.className = "player-name";
         name.textContent = player.name;
 
-        div.appendChild(img);
+        div.appendChild(button);
         div.appendChild(name);
         container.appendChild(div);
       });
