@@ -12,64 +12,78 @@
       text-align: center;
       padding: 40px;
     }
+    .players-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
     .player {
-      display: inline-block;
-      margin: 30px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 220px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .player:hover {
+      transform: scale(1.05);
     }
     .player img {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       object-fit: cover;
       border-radius: 12px;
       border: 3px solid #fff;
       box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     }
     .player-name {
-      margin-top: 15px;
-      font-size: 1.4rem;
+      margin-top: 18px;
+      font-size: 1.6rem;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1 style="font-size: 2rem; margin-bottom: 40px;">선수 목록</h1>
-  <div id="players-container"></div>
+  <h1 style="font-size: 2.5rem; margin-bottom: 50px;">선수 목록</h1>
+  <div id="players-container" class="players-grid"></div>
 
   <script>
     const playersData = {
       man_city: [
-        { name: "홀란드", img: "https://menu.mt.co.kr/moneyweek/thumb/2022/06/14/06/2022061410333642908_1.jpg" },
-        { name: "로드리", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYl8cO1uhEo5aA3615B4Kxe0qKt8NqDqcBAA&s" },
-        { name: "베실바", img: "https://upload3.inven.co.kr/upload/2024/02/04/bbs/i16828388163.webp?MW=800" },
-        { name: "후벵 디아스", img: "https://assets.goal.com/images/v3/blt6e45266e8e46c7ac/5a6569530063163c0fc6a9e57fa95cf4ef237adc.jpg?auto=webp&format=pjpg&width=3840&quality=60" }
+        { name: "홀란드", img: "https://kr.mancity.com/meta/media/2q5d5q1a/erling-haaland.png" },
+        { name: "로드리", img: "https://kr.mancity.com/meta/media/3q5d5q1a/rodri.png" },
+        { name: "베르나르두 실바", img: "https://kr.mancity.com/meta/media/4q5d5q1a/bernardo-silva.png" },
+        { name: "후벵 디아스", img: "https://kr.mancity.com/meta/media/5q5d5q1a/ruben-dias.png" }
       ],
       liverpool: [
-        { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
-        { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
-        { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
-        { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
+        { name: "살라", img: "https://www.liverpoolfc.com/meta/media/1q5d5q1a/mohamed-salah.png" },
+        { name: "반 다이크", img: "https://www.liverpoolfc.com/meta/media/2q5d5q1a/virgil-van-dijk.png" },
+        { name: "소보슬라이", img: "https://www.liverpoolfc.com/meta/media/3q5d5q1a/dominik-szoboszlai.png" },
+        { name: "알리송", img: "https://www.liverpoolfc.com/meta/media/4q5d5q1a/alisson-becker.png" }
       ],
       arsenal: [
-        { name: "사카", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s" },
-        { name: "라이스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s" },
-        { name: "외데고르", img: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg" }
+        { name: "사카", img: "https://www.arsenal.com/meta/media/1q5d5q1a/bukayo-saka.png" },
+        { name: "라이스", img: "https://www.arsenal.com/meta/media/2q5d5q1a/declan-rice.png" },
+        { name: "외데고르", img: "https://www.arsenal.com/meta/media/3q5d5q1a/martin-odegaard.png" }
       ],
       chelsea: [
-        { name: "콜파머", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOyZIgv7DzRNY_EIHWmTgUORqODviQBKnGw&s" },
-        { name: "무드릭", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOn2fpARcDxxf9FrjkP9kVGvDlnNDlL8qd7w&s" },
-        { name: "잭슨", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfEgzzlz9BkbIXqNvCGMcRgDSq4uPqNwmPFQ&s" }
+        { name: "콜 파머", img: "https://www.chelseafc.com/meta/media/1q5d5q1a/cole-palmer.png" },
+        { name: "무드릭", img: "https://www.chelseafc.com/meta/media/2q5d5q1a/mykhailo-mudryk.png" },
+        { name: "잭슨", img: "https://www.chelseafc.com/meta/media/3q5d5q1a/nicolas-jackson.png" }
       ],
       man_utd: [
-        { name: "브루노 페르난데스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGt0w0odyAhFrem9Uc7D0rfEsfbIvEsUnpFg&s" },
-        { name: "가르나초", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIVktSdclr3SW0cwAMFZGs17rh95bFqTbog&s" },
-        { name: "디알로", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/cb/2024/03/18/202403180828347526_0.jpg" }
+        { name: "브루노 페르난데스", img: "https://www.manutd.com/meta/media/1q5d5q1a/bruno-fernandes.png" },
+        { name: "가르나초", img: "https://www.manutd.com/meta/media/2q5d5q1a/alejandro-garnacho.png" },
+        { name: "디알로", img: "https://www.manutd.com/meta/media/3q5d5q1a/amad-diallo.png" }
       ],
       tottenham: [
-        { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
-        { name: "메디슨", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/sp/2024/06/06/rcv.YNA.20240522.PEP20240522198201009_P1.jpg" },
-        { name: "로메로", img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" },
-        { name: "판더벤", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" }
+        { name: "손흥민", img: "https://www.tottenhamhotspur.com/meta/media/1q5d5q1a/son-heung-min.png" },
+        { name: "메디슨", img: "https://www.tottenhamhotspur.com/meta/media/2q5d5q1a/james-maddison.png" },
+        { name: "로메로", img: "https://www.tottenhamhotspur.com/meta/media/3q5d5q1a/cristian-romero.png" },
+        { name: "판 더 벤", img: "https://www.tottenhamhotspur.com/meta/media/4q5d5q1a/micky-van-de-ven.png" }
       ]
     };
 
@@ -93,9 +107,7 @@
         div.appendChild(name);
         container.appendChild(div);
       });
-    } else {
-      container.innerHTML = "<p>선수 정보가 없습니다.</p>";
-    }
-  </script>
-</body>
-</html>
+
+::contentReference[oaicite:12]{index=12}
+ 
+
