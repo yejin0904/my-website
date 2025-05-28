@@ -136,44 +136,93 @@
     }
   };
 
-  // 팀 배경 이미지
-  const teamBackgrounds = {
-    man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
-    liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
-    arsenal: "https://wallpaperaccess.com/full/4771683.jpg",
-    chelsea: "https://wallpaperaccess.com/full/2021396.jpg",
-    man_utd: "https://wallpaperaccess.com/full/1876653.jpg",
-    tottenham: "https://wallpaperaccess.com/full/1180226.jpg"
+  // 선수 이미지 데이터
+  const playersData = {
+    man_city: [
+      { name: "홀란드", img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
+      { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+      { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
+      { name: "케빈 데브라이너", img: "https://cdn.jejumaeil.net/news/photo/202106/302188_81878_3710.jpg" },
+      { name: "후뱅 디아스", img: "https://image.fmkorea.com/files/attach/new3/20240120/33854530/2813613721/6632728993/b9c0bfde260a82656ae6e65a5af7d880.jpg" },
+      { name: "포든", img: "https://www.mancity.com/meta/media/fkblpjr4/phil-foden-nomination.jpg?width=1620" }
+    ],
+    liverpool: [
+      { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+      { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
+      { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
+      { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
+    ],
+    arsenal: [
+      { name: "사카", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s" },
+      { name: "라이스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s" },
+      { name: "외데고르", img: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg" }
+    ],
+    chelsea: [
+      { name: "콜파머", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOyZIgv7DzRNY_EIHWmTgUORqODviQBKnGw&s" },
+      { name: "무드릭", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOn2fpARcDxxf9FrjkP9kVGvDlnNDlL8qd7w&s" },
+      { name: "잭슨", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfEgzzlz9BkbIXqNvCGMcRgDSq4uPqNwmPFQ&s" }
+    ],
+    man_utd: [
+      { name: "브루노 페르난데스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGt0w0odyAhFrem9Uc7D0rfEsfbIvEsUnpFg&s" },
+      { name: "가르나초", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIVktSdclr3SW0cwAMFZGs17rh95bFqTbog&s" },
+      { name: "디알로", img: "https://news.kbs.co.kr/data/news/2025/01/10/20250110_9vv9M2.jpg" }
+    ],
+    tottenham: [
+      { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
+      { name: "메디슨", img: "https://static.independent.co.uk/2025/01/25/12/ff6076d4bf0d2348a2be700175e78d82Y29udGVudHNlYXJjaGFwaSwxNzM3ODE4NTg3-2.78775910.jpg" },
+      { name: "로메로", img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" },
+      { name: "판더벤", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" }
+    ]
   };
 
-  const urlParams = new URLSearchParams(location.search);
-  const teamKey = urlParams.get("team");
-  const playerName = urlParams.get("player");
+  // URL 쿼리 파라미터에서 team, player 값 가져오기
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      team: params.get('team'),
+      player: params.get('player')
+    };
+  }
 
-  if(!teamKey || !playerName || !playerDetails[teamKey] || !playerDetails[teamKey][playerName]){
-    document.body.innerHTML = '<p style="color:#fff; text-align:center; margin-top:100px;">존재하지 않는 선수입니다. <a href="players.html?team=' + (teamKey||"") + '" style="color:#ffd700;">선수 목록으로 돌아가기</a></p>';
-  } else {
-    document.getElementById("background").style.backgroundImage = `url(${teamBackgrounds[teamKey] || ""})`;
+  function renderPlayerInfo(team, player) {
+    const content = document.getElementById('player-content');
+    const background = document.getElementById('background');
 
-    const player = playerDetails[teamKey][playerName];
-    const imgSrc = playersData[teamKey].find(p => p.name === playerName)?.img || "";
+    if (!team || !player) {
+      content.innerHTML = '<p>팀 또는 선수 정보가 없습니다.</p>';
+      return;
+    }
 
-    const container = document.getElementById("player-content");
-    container.innerHTML = `
-      <img class="player-img" src="${imgSrc}" alt="${playerName}" />
+    const details = playerDetails[team]?.[player];
+    const playerImgObj = playersData[team]?.find(p => p.name === player);
+
+    if (!details || !playerImgObj) {
+      content.innerHTML = '<p>해당 선수 정보를 찾을 수 없습니다.</p>';
+      return;
+    }
+
+    // 배경 이미지 (팀 배경)
+    background.style.backgroundImage = `url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/${team}_logo.svg/1024px-${team}_logo.svg.png')`;
+
+    content.innerHTML = `
+      <img class="player-img" src="${playerImgObj.img}" alt="${player}" />
       <div class="player-info">
-        <h1>${playerName}</h1>
-        <div class="detail-row">포지션: ${player.position}</div>
-        <div class="detail-row">키: ${player.height}</div>
-        <div class="detail-row">몸무게: ${player.weight}</div>
-        <div class="detail-row">이번 시즌 득점: ${player.seasonGoals} 골</div>
-        <div class="detail-row">이번 시즌 어시스트: ${player.seasonAssists} 회</div>
+        <h1>${player}</h1>
+        <div class="detail-row">포지션: ${details.position}</div>
+        <div class="detail-row">키: ${details.height}</div>
+        <div class="detail-row">몸무게: ${details.weight}</div>
+        <div class="detail-row">이번 시즌 득점: ${details.seasonGoals}골</div>
+        <div class="detail-row">이번 시즌 도움: ${details.seasonAssists}개</div>
       </div>
     `;
 
-    const backLink = document.getElementById("back-link");
-    backLink.href = `players.html?team=${teamKey}`;
+    // 뒤로가기 버튼 링크 설정 (예: 선수 목록 페이지)
+    const backBtn = document.getElementById('back-link');
+    backBtn.href = `./team_players.html?team=${team}`;
   }
+
+  const { team, player } = getQueryParams();
+  renderPlayerInfo(team, player);
 </script>
 </body>
 </html>
