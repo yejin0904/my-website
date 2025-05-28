@@ -25,7 +25,8 @@
       background-image: url('https://img1.newsis.com/2024/05/20/NISI20240520_0001111378_web.jpg');
       background-size: cover;
       background-position: center;
-      opacity: 0.08;
+      opacity: 0.15; /* 더 선명하게 */
+      filter: brightness(1.3); /* 밝기 높이기 */
       z-index: -1;
     }
 
@@ -90,7 +91,6 @@
     if (playersData[team]) {
       const players = playersData[team];
 
-      // 맨시티면 배경 추가
       if (team === "man_city") {
         document.body.classList.add("mancity-bg");
       }
