@@ -2,191 +2,124 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>선수 정보</title>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #111;
+      background-color: #000;
       color: white;
       margin: 0;
-      padding: 40px 20px 80px;
+      padding: 40px 20px;
+      text-align: center;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
     }
 
-    #background {
+    #background-image {
       position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      filter: brightness(0.7);
-      opacity: 0.6;
+      filter: brightness(0.4);
+      opacity: 0.5;
       z-index: -1;
-      transition: background-image 0.5s ease-in-out;
     }
 
-    .content {
-      max-width: 1200px;
-      margin: 80px auto 0; /* 약간 아래로 내림 */
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 160px;
-      padding: 50px;
-      background-color: rgba(255, 255, 255, 0.12); /* 더 진한 투명도 */
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    .player-info {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
-    .player-img {
-      width: 500px;
-      max-width: 100%;
-      border-radius: 20px;
-      border: 5px solid white;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-      object-fit: cover;
-      flex-shrink: 0;
-      align-self: center;
+    .player-info img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 16px;
+      border: 4px solid #fff;
+      margin-bottom: 20px;
     }
 
-    .info-section {
-      flex: 1;
-      text-align: right;
-      line-height: 1.8;
-      font-size: 1.3rem;
-      align-self: center;
+    .player-info h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
     }
 
-    .player-name {
-      font-size: 2.7rem;
-      margin-bottom: 25px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
+    .player-info p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin: 4px 0;
     }
 
-    .player-info strong {
-      color: #FFD700;
-    }
-
-    .back-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 28px;
-      background-color: white;
-      color: black;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
+    a {
+      color: #00acee;
       text-decoration: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-
-    .back-btn:hover {
-      background-color: #f0c040;
-      color: #111;
-    }
-
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-      }
-      .player-img {
-        width: 90%;
-        margin: 0 auto;
-      }
-      .info-section {
-        text-align: center;
-        font-size: 1.1rem;
-      }
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div id="background"></div>
-
-  <div class="content">
-    <img id="player-img" class="player-img" src="" alt="선수 이미지" />
-    <div class="info-section">
-      <div class="player-name" id="player-name">선수 이름</div>
-      <div class="player-info" id="player-info"></div>
-    </div>
-  </div>
-
-  <a class="back-btn" href="javascript:history.back()">← 목록으로</a>
+  <div id="background-image"></div>
+  <div class="player-info" id="player-info-container"></div>
 
   <script>
-    const playersInfo = {
-      man_city: {
-        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
-        players: {
-          "홀란드": {
-            img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
-            height: "195cm",
-            weight: "94kg",
-            position: "스트라이커",
-            age: 23,
-            nationality: "노르웨이",
-            season: "22-23 시즌 53경기 52골 9도움"
-          },
-          "로드리": {
-            img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-            height: "191cm",
-            weight: "82kg",
-            position: "미드필더",
-            age: 28,
-            nationality: "스페인",
-            season: "22-23 시즌 56경기 4골 7도움"
-          }
-        }
-      },
-      liverpool: {
-        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
-        players: {
-          "살라": {
-            img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60",
-            height: "175cm",
-            weight: "71kg",
-            position: "윙어",
-            age: 31,
-            nationality: "이집트",
-            season: "22-23 시즌 51경기 30골 16도움"
-          }
-        }
-      }
+    const team = new URLSearchParams(location.search).get("team");
+    const player = new URLSearchParams(location.search).get("player");
+
+    const teamBackgrounds = {
+      man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+      liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+      arsenal: "https://p4.wallpaperbetter.com/wallpaper/296/389/257/soccer-arsenal-f-c-logo-wallpaper-preview.jpg",
+      chelsea: "https://p4.wallpaperbetter.com/wallpaper/331/909/309/soccer-chelsea-f-c-logo-wallpaper-preview.jpg",
+      man_utd: "https://p4.wallpaperbetter.com/wallpaper/321/1002/349/soccer-manchester-united-f-c-logo-wallpaper-preview.jpg",
+      tottenham: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg"
     };
 
-    const params = new URLSearchParams(location.search);
-    const team = params.get("team");
-    const playerName = params.get("player");
+    const playerDetails = {
+      "홀란드": {
+        img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
+        position: "공격수",
+        birth:"2000년7월21일"
+        height: "195cm",
+        weight: "88kg",
+        등번호: "9"
+        소속:"브뤼네 FK (2015~2017) 몰데 FK (2017~2019) FC 레드불 잘츠부르크 (2019~2020) 보루시아 도르트문트 (2020~2022)맨체스터 시티 FC (2022~ )"
+        stats:"2024-25 시즌: 44경기(선발 43경기) 31골 4도움 프리미어 리그 31경기 선발 22 득점 3 도움"
+      },
+      "로드리": {
+        img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg",
+        position: "미드필더",
+        height: "191cm",
+        weight: "82kg",
+        stats: "2024-25 시즌: 38경기 6골 8도움"
+      },
+      // 추가 선수 정보는 여기에 계속해서 넣으면 됩니다.
+    };
 
-    const teamData = playersInfo[team];
-    const playerData = teamData?.players[playerName];
+    const container = document.getElementById("player-info-container");
+    const bgDiv = document.getElementById("background-image");
 
-    if (teamData && playerData) {
-      document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
-      document.getElementById("player-name").textContent = playerName;
-      document.getElementById("player-img").src = playerData.img;
-      document.getElementById("player-info").innerHTML = `
-        <strong>포지션:</strong> ${playerData.position}<br/>
-        <strong>나이:</strong> ${playerData.age}세<br/>
-        <strong>국적:</strong> ${playerData.nationality}<br/>
-        <strong>키:</strong> ${playerData.height}<br/>
-        <strong>몸무게:</strong> ${playerData.weight}<br/>
-        <strong>최근 시즌 기록:</strong> ${playerData.season}
+    if (playerDetails[player]) {
+      const info = playerDetails[player];
+      container.innerHTML = `
+        <img src="${info.img}" alt="${player}" />
+        <h1>${player}</h1>
+        <p><strong>포지션:</strong> ${info.position}</p>
+        <p><strong>신장:</strong> ${info.height}</p>
+        <p><strong>체중:</strong> ${info.weight}</p>
+        <p><strong>시즌 기록:</strong> ${info.stats}</p>
+        <br>
+        <a href="players.html?team=${team}">← 선수 목록으로 돌아가기</a>
       `;
+      bgDiv.style.backgroundImage = `url(${teamBackgrounds[team]})`;
     } else {
-      document.querySelector(".content").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
+      container.innerHTML = `<p>선수 정보를 찾을 수 없습니다.</p><a href="players.html?team=${team}">← 목록으로 돌아가기</a>`;
     }
   </script>
 </body>
