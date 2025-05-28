@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #222; /* 기존 #111 -> #222로 밝기 UP */
+      background-color: #111;
       color: white;
       text-align: center;
       padding: 40px;
@@ -19,31 +19,35 @@
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #222; /* 배경색과 동일하게 */
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
-      opacity: 0.3; /* 투명도 증가 (0.15 -> 0.3) */
       z-index: -1;
+      background-color: #222; /* 조금 밝은 검정 배경 */
+      opacity: 1;
+    }
+    #background-image {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -2;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.65);
+      opacity: 0.45;
       pointer-events: none;
       transition: background-image 0.5s ease-in-out;
     }
     h1 {
       font-size: 3rem;
-      margin-bottom: 100px;
+      margin-bottom: 100px; /* 제목 아래 여백 더 넓게 */
       position: relative;
       z-index: 1;
-    }
-    #players-container {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
     }
     .players-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 50px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .grid-2x2 {
       display: grid;
@@ -68,11 +72,15 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
+    p {
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
   <h1>선수 목록</h1>
   <div id="players-container" class="players-grid"></div>
+  <div id="background-image"></div>
 
   <script>
     const playersData = {
@@ -80,7 +88,7 @@
         { name: "홀란드", img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
         { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
         { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
-        { name: "후벵 디아스", img: "https://upload3.inven.co.kr/upload/2023/03/18/bbs/i15545899063.png?MW=800" }
+        { name: "후벵 디아스", img: "https://resources.premierleague.com/premierleague/photos/players/250x250/p115941.png" }
       ],
       liverpool: [
         { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
@@ -111,6 +119,7 @@
       ]
     };
 
+    // 팀별 배경 이미지 URL (검정색 기반 투명도 적용)
     const teamBackgrounds = {
       man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
       liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
@@ -122,17 +131,7 @@
 
     const team = new URLSearchParams(location.search).get("team");
     const container = document.getElementById("players-container");
-
-    if(team && teamBackgrounds[team]){
-      document.body.style.backgroundImage = 'none';
-      const style = document.createElement('style');
-      style.innerHTML = `
-        body::before {
-          background-image: url(${teamBackgrounds[team]});
-        }
-      `;
-      document.head.appendChild(style);
-    }
+    const bgDiv = document.getElementById("background-image");
 
     if (playersData[team]) {
       const players = playersData[team];
@@ -159,8 +158,16 @@
         div.appendChild(name);
         container.appendChild(div);
       });
+
+      // 배경 이미지 적용
+      if (teamBackgrounds[team]) {
+        bgDiv.style.backgroundImage = `url(${teamBackgrounds[team]})`;
+      } else {
+        bgDiv.style.backgroundImage = "";
+      }
     } else {
       container.innerHTML = "<p>선수 정보가 없습니다.</p>";
+      bgDiv.style.backgroundImage = "";
     }
   </script>
 </body>
