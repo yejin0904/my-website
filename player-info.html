@@ -180,7 +180,8 @@
             position: "스트라이커",
             age: 24,
             nationality: "노르웨이",
-            season: "24-25 프리미어 리그 선발 43경기 교체 1경기 31득점 4도움",
+            season: "24-25 프리미어 리그"
+              "선발 43경기 교체 1경기 31득점 4도움",
             awards: [
               "골든 부트 2022",
               "프리미어리그 올해의 선수 2023"
@@ -205,7 +206,8 @@
             position: "미드필더, 윙어",
             age: 30,
             nationality: "포르투갈",
-            season: "24-25 시즌 선발 프리미어 리그 22경기 교체 4경기 2득점 4도움",
+            season: "24-25 시즌 선발 프리미어 리그"
+              "22경기 교체 4경기 2득점 4도움",
             awards: [
               "프리미어 리그 올해의 영 플레이어 2024"
             ]
@@ -250,4 +252,18 @@
 
       document.getElementById("player-info").innerHTML = `
         <div class="info-row"><span class="label">포지션:</span><span class="value">${playerData.position}</span></div>
-        <div class="info-row"><span class="label">나이:</span><span
+        <div class="info-row"><span class="label">나이:</span><span class="value">${playerData.age}세</span></div>
+        <div class="info-row"><span class="label">키/몸무게:</span><span class="value">${playerData.height} / ${playerData.weight}</span></div>
+        <div class="info-row"><span class="label">국적:</span><span class="value">${playerData.nationality}</span></div>
+        <div class="info-row"><span class="label">시즌 기록:</span><span class="value">${playerData.season}</span></div>
+        <div class="info-row"><span class="label">수상 경력:</span><span class="value">${awardsHTML}</span></div>
+      `;
+    } else {
+      document.getElementById("player-name").textContent = "선수 정보 없음";
+      document.getElementById("player-info").textContent = "";
+      document.getElementById("player-img").style.display = "none";
+      document.getElementById("background").style.backgroundImage = "";
+    }
+  </script>
+</body>
+</html>
