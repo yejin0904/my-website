@@ -7,27 +7,51 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fff; /* 흰색 배경으로 변경 */
-      color: #111; /* 텍스트 색상도 어두운 회색으로 변경 */
+      background-color: #fff; /* 기본 흰 배경 */
+      color: #111;
       text-align: center;
       padding: 40px;
       overflow: hidden;
     }
 
-    /* 맨시티 배경 이미지 - 밝고 투명하게 */
-    body.mancity-bg::before {
+    /* 공통 배경 스타일 */
+    body::before {
       content: "";
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('https://img1.newsis.com/2024/05/20/NISI20240520_0001111378_web.jpg');
       background-size: cover;
       background-position: center;
-      opacity: 0.15; /* 흰 배경 위에 얹는 것이므로 이 정도가 적당함 */
-      filter: brightness(1.05); /* 너무 어두워지지 않게 */
+      opacity: 0.15;
+      filter: brightness(1.05);
       z-index: -1;
+      pointer-events: none;
+    }
+
+    body.man_city::before {
+      background-image: url('https://img1.newsis.com/2024/05/20/NISI20240520_0001111378_web.jpg');
+    }
+
+    body.liverpool::before {
+      background-image: url('https://d2k5miyk6y5zf0.cloudfront.net/article/MYH/20200723/MYH20200723015900038.jpg');
+    }
+
+    body.tottenham::before {
+      background-image: url('https://upload2.inven.co.kr/upload/2019/06/02/bbs/i15508252830.jpg');
+    }
+
+    body.arsenal::before {
+      background-image: url('https://upload3.inven.co.kr/upload/2020/06/08/bbs/i13811178377.jpg?MW=800');
+    }
+
+    body.man_utd::before {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTly786ICm5VgTyC9_Zmyv0Yz5M78HzwIj3HQ&s');
+    }
+
+    body.chelsea::before {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThY8c-QqiNUY7K__wlPNCe_7JYeZccoIbWxg&s');
     }
 
     h1 {
@@ -82,19 +106,45 @@
         { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
         { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
         { name: "후벵 디아스", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/kz/2024/11/15/news-p.v1.20241115.611f4aa7904049dcadfd67deedbdfcdf_P1.jpg" }
+      ],
+      liverpool: [
+        { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+        { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
+        { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
+        { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
+      ],
+      arsenal: [
+        { name: "사카", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s" },
+        { name: "라이스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s" },
+        { name: "외데고르", img: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg" }
+      ],
+      chelsea: [
+        { name: "콜파머", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOyZIgv7DzRNY_EIHWmTgUORqODviQBKnGw&s" },
+        { name: "무드릭", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOn2fpARcDxxf9FrjkP9kVGvDlnNDlL8qd7w&s" },
+        { name: "잭슨", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfEgzzlz9BkbIXqNvCGMcRgDSq4uPqNwmPFQ&s" }
+      ],
+      man_utd: [
+        { name: "브루노 페르난데스", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGt0w0odyAhFrem9Uc7D0rfEsfbIvEsUnpFg&s" },
+        { name: "가르나초", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIVktSdclr3SW0cwAMFZGs17rh95bFqTbog&s" },
+        { name: "디알로", img: "https://news.kbs.co.kr/data/news/2025/01/10/20250110_9vv9M2.jpg" }
+      ],
+      tottenham: [
+        { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
+        { name: "메디슨", img: "https://static.independent.co.uk/2025/01/25/12/ff6076d4bf0d2348a2be700175e78d82Y29udGVudHNlYXJjaGFwaSwxNzM3ODE4NTg3-2.78775910.jpg" },
+        { name: "로메로", img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" },
+        { name: "판더벤", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" }
       ]
     };
 
     const team = new URLSearchParams(location.search).get("team");
     const container = document.getElementById("players-container");
 
+    if (team) {
+      document.body.classList.add(team);
+    }
+
     if (playersData[team]) {
       const players = playersData[team];
-
-      if (team === "man_city") {
-        document.body.classList.add("mancity-bg");
-      }
-
       if (players.length === 4) {
         container.className = "grid-2x2";
       }
