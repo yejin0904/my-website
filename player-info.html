@@ -1,136 +1,306 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>선수 목록</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #111;
-      color: white;
-      margin: 0;
-      padding: 40px 20px 80px;
-      min-height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>선수 정보</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #111;
+    color: white;
+    overflow-x: hidden;
+  }
 
-    .team-name {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-      font-weight: bold;
-    }
+  header {
+    padding: 15px 20px;
+    background: #222;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
 
-    .players-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+  .main {
+    display: flex;
+    min-height: calc(100vh - 56px);
+  }
 
-    .player-card {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-    }
+  .sidebar {
+    width: 250px;
+    background: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #444;
+  }
 
-    .player-card:hover {
-      transform: translateY(-5px);
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+  .sidebar h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
 
-    .player-card img {
+  .team-list, .player-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .team-list li, .player-list li {
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    background: #333;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    user-select: none;
+  }
+
+  .team-list li:hover, .player-list li:hover {
+    background: #555;
+  }
+
+  .team-list li.active, .player-list li.active {
+    background: #007bff;
+  }
+
+  .content {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  #background-image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3);
+    z-index: 0;
+  }
+
+  .player-details {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.7);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.9);
+    color: #eee;
+  }
+
+  .player-photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 4px solid white;
+    box-shadow: 0 0 15px #007bff;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .player-details h1 {
+    margin: 0 0 12px 0;
+    font-size: 2.2rem;
+  }
+
+  .player-info {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+
+  /* 반응형 */
+  @media (max-width: 768px) {
+    .main {
+      flex-direction: column;
+    }
+    .sidebar {
       width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 12px;
+      border-right: none;
+      border-bottom: 1px solid #444;
     }
-
-    .player-card h3 {
-      margin-top: 12px;
-      font-size: 1.3rem;
+    .player-photo {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 15px;
     }
-
-    .back-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 28px;
-      background-color: white;
-      color: black;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-
-    .back-btn:hover {
-      background-color: #f0c040;
-      color: #111;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="team-name" id="team-title">선수 목록</div>
-    <div class="players-grid" id="players-grid">
-      <!-- 선수 카드가 자바스크립트로 생성됩니다 -->
+<header>프리미어리그 선수 정보</header>
+<div class="main">
+  <nav class="sidebar">
+    <h2>팀 선택</h2>
+    <ul class="team-list" id="team-list">
+      <!-- 팀 리스트 동적 생성 -->
+    </ul>
+
+    <h2>선수 목록</h2>
+    <ul class="player-list" id="player-list">
+      <!-- 선수 리스트 동적 생성 -->
+    </ul>
+  </nav>
+
+  <section class="content">
+    <div id="background-image"></div>
+    <div class="player-details" id="player-details">
+      <img src="" alt="선수 사진" class="player-photo" id="player-photo" />
+      <h1 id="player-name">선수를 선택하세요</h1>
+      <div class="player-info" id="player-info">
+        <!-- 선수 상세 정보 표시 -->
+      </div>
     </div>
-  </div>
+  </section>
+</div>
 
-  <a class="back-btn" href="javascript:history.back()">← 이전으로</a>
-
-  <script>
-    const playersInfo = {
-      man_city: {
-        players: {
-          "홀란드": { img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
-          "로드리": { img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
-          "데브라이너": { img: "https://cdn.mediotiempo.com/uploads/media/2023/06/10/kevin-de-bruyne-previo-final.jpg" }
-        }
-      },
-      liverpool: {
-        players: {
-          "살라": { img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
-          "반다이크": { img: "https://cdn.vox-cdn.com/thumbor/VpEoKjK-GCSzfEq7GiNjMgt03t4=/0x0:4928x3280/1200x800/filters:focal(2070x710:2842x1482)/cdn.vox-cdn.com/uploads/chorus_image/image/72150868/usa_today_20131391.0.jpg" },
-          "알리송": { img: "https://cdn.vox-cdn.com/thumbor/77JqlebsAyhVNoE4tqFhZg5H7_Q=/0x0:4727x3148/1200x800/filters:focal(1986x844:2742x1600)/cdn.vox-cdn.com/uploads/chorus_image/image/72151782/usa_today_20132113.0.jpg" }
-        }
-      }
-    };
-
-    const params = new URLSearchParams(location.search);
-    const team = params.get("team");
-    const teamData = playersInfo[team];
-
-    if (teamData) {
-      document.getElementById("team-title").textContent = team === "man_city" ? "맨체스터 시티 선수" : "리버풀 선수";
-      const grid = document.getElementById("players-grid");
-
-      Object.entries(teamData.players).forEach(([name, data]) => {
-        const card = document.createElement("div");
-        card.className = "player-card";
-        card.innerHTML = `
-          <a href="player.html?team=${team}&player=${name}">
-            <img src="${data.img}" alt="${name}" />
-            <h3>${name}</h3>
-          </a>
-        `;
-        grid.appendChild(card);
-      });
-    } else {
-      document.querySelector(".container").innerHTML = "<p>선수 정보를 불러올 수 없습니다.</p>";
+<script>
+  // 팀 정보 (배경이미지 포함)
+  const teams = {
+    man_city: {
+      name: "맨체스터 시티",
+      background: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png",
+      bgImage: "https://images.unsplash.com/photo-1541447273827-0ee2d9bca9d2?auto=format&fit=crop&w=1350&q=80"
+    },
+    liverpool: {
+      name: "리버풀",
+      background: "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
+      bgImage: "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1350&q=80"
+    },
+    arsenal: {
+      name: "아스날",
+      background: "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
+      bgImage: "https://images.unsplash.com/photo-1534813311724-f22c0ff71fbd?auto=format&fit=crop&w=1350&q=80"
+    },
+    chelsea: {
+      name: "첼시",
+      background: "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
+      bgImage: "https://images.unsplash.com/photo-1572153474579-4f8dbb88091e?auto=format&fit=crop&w=1350&q=80"
+    },
+    man_utd: {
+      name: "맨체스터 유나이티드",
+      background: "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+      bgImage: "https://images.unsplash.com/photo-1549887535-54d2b16f3c36?auto=format&fit=crop&w=1350&q=80"
+    },
+    tottenham: {
+      name: "토트넘",
+      background: "https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg",
+      bgImage: "https://images.unsplash.com/photo-1591696205602-ec0e487b62d8?auto=format&fit=crop&w=1350&q=80"
     }
-  </script>
-</body>
-</html>
+  };
+
+  // 선수 데이터
+  const playersDetails = {
+    man_city: {
+      "홀란드": {
+        height: "194cm",
+        weight: "88kg",
+        position: "스트라이커",
+        seasonStats: "2024 시즌: 28경기 25골 5어시스트",
+        photo: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg"
+      },
+      "로드리": {
+        height: "189cm",
+        weight: "84kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 30경기 4골 6어시스트",
+        photo: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60"
+      },
+      "베실바": {
+        height: "180cm",
+        weight: "75kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 27경기 3골 7어시스트",
+        photo: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg"
+      },
+      "케빈 데브라이너": {
+        height: "181cm",
+        weight: "70kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 29경기 8골 12어시스트",
+        photo: "https://cdn.jejumaeil.net/news/photo/202106/302188_81878_3710.jpg"
+      },
+      "후뱅 디아스": {
+        height: "183cm",
+        weight: "79kg",
+        position: "수비수",
+        seasonStats: "2024 시즌: 25경기 1골 2어시스트",
+        photo: "https://image.fmkorea.com/files/attach/new3/20240120/33854530/2813613721/6632728993/b9c0bfde260a82656ae6e65a5af7d880.jpg"
+      },
+      "포든": {
+        height: "171cm",
+        weight: "70kg",
+        position: "미드필더/공격수",
+        seasonStats: "2024 시즌: 31경기 6골 8어시스트",
+        photo: "https://www.mancity.com/meta/media/fkblpjr4/phil-foden-nomination.jpg?width=1620"
+      }
+    },
+    liverpool: {
+      "살라": {
+        height: "175cm",
+        weight: "73kg",
+        position: "공격수",
+        seasonStats: "2024 시즌: 32경기 26골 9어시스트",
+        photo: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60"
+      },
+      "반다이크": {
+        height: "193cm",
+        weight: "92kg",
+        position: "수비수",
+        seasonStats: "2024 시즌: 29경기 2골 1어시스트",
+        photo: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg"
+      },
+      "소보슬라이": {
+        height: "181cm",
+        weight: "77kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 28경기 5골 7어시스트",
+        photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s"
+      },
+      "알리송": {
+        height: "191cm",
+        weight: "91kg",
+        position: "골키퍼",
+        seasonStats: "2024 시즌: 34경기 무실점 12회 클린시트",
+        photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s"
+      }
+    },
+    arsenal: {
+      "사카": {
+        height: "178cm",
+        weight: "70kg",
+        position: "윙어",
+        seasonStats: "2024 시즌: 33경기 11골 10어시스트",
+        photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2IlPBT7x-KZvkcbIBkAS9sOhBCL1jXeiRg&s"
+      },
+      "라이스": {
+        height: "185cm",
+        weight: "78kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 30경기 3골 4어시스트",
+        photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLaZGGDDvViLxtGds0t4v2k2cUUhEwS2pmQ&s"
+      },
+      "외데고르": {
+        height: "179cm",
+        weight: "74kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 28경기 4골 6어시스트",
+        photo: "https://news.nateimg.co.kr/orgImg/oh/2025/03/17/IE003428610_STD.jpg"
+      }
+    },
+    chelsea: {
+      "콜파머": {
+        height: "177cm",
+        weight: "71kg",
+        position: "미드필더",
+        seasonStats: "2024 시즌: 29경기 5골 
