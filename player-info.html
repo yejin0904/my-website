@@ -56,7 +56,7 @@
 
     .info-section {
       flex: 1;
-      text-align: left !important;  /* 강제 왼쪽 정렬 */
+      text-align: left !important;
       line-height: 1.8;
       font-size: 1.4rem;
       align-self: center;
@@ -67,41 +67,37 @@
       margin-bottom: 25px;
       font-weight: 900;
       letter-spacing: 1.2px;
-      text-align: left !important; /* 강제 왼쪽 정렬 */
-    }
-
-    .player-info strong {
-      color: #FFD700;
+      text-align: left !important;
     }
 
     .player-info {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      text-align: left !important; /* 강제 왼쪽 정렬 */
+      gap: 16px;
+      text-align: left !important;
     }
 
     .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-width: 300px;
-      max-width: 100%;
-      text-align: left !important; /* 강제 왼쪽 정렬 */
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      column-gap: 12px;
+      align-items: start;
+      text-align: left !important;
     }
 
     .label {
       color: #FFD700;
-      font-weight: 600;
-      flex-shrink: 0;
-      text-align: left !important; /* 강제 왼쪽 정렬 */
+      font-weight: 700;
+      white-space: nowrap;
+      text-align: left !important;
     }
 
     .value, .value-wrap {
-      text-align: left !important; /* 강제 왼쪽 정렬 */
+      text-align: left !important;
       white-space: pre-wrap;
-      max-width: 70%;
-      overflow-wrap: break-word;
+      word-break: break-word;
+      line-height: 1.4;
+      max-width: 100%;
     }
 
     .back-btn {
@@ -129,7 +125,7 @@
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
-        text-align: left !important; /* 모바일에서도 왼쪽 정렬 유지 */
+        text-align: left !important;
         gap: 30px;
       }
       .player-img {
@@ -138,16 +134,14 @@
       }
       .info-section {
         font-size: 1.1rem;
-        text-align: left !important; /* 모바일에서도 왼쪽 정렬 유지 */
+        text-align: left !important;
       }
       .info-row {
-        justify-content: space-between;
-        gap: 10px;
-        text-align: left !important; /* 강제 왼쪽 정렬 */
+        grid-template-columns: 100px 1fr;
       }
       .value, .value-wrap {
-        max-width: 60%;
-        text-align: left !important; /* 모바일에서도 왼쪽 정렬 유지 */
+        max-width: 100%;
+        text-align: left !important;
       }
     }
   </style>
