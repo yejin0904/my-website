@@ -10,64 +10,66 @@
       background-color: #111;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 40px;
     }
     .player {
       display: inline-block;
-      margin: 20px;
+      margin: 30px;
       text-align: center;
     }
     .player img {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid #fff;
+      border-radius: 12px;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
     }
     .player-name {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      margin-top: 15px;
+      font-size: 1.4rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>선수 목록</h1>
+  <h1 style="font-size: 2rem; margin-bottom: 40px;">선수 목록</h1>
   <div id="players-container"></div>
 
   <script>
     const playersData = {
       man_city: [
-        { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Erling_Haaland_2022.jpg" },
-        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Rodri_2022.jpg" },
-        { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bernardo_Silva_2022.jpg" },
-        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Ruben_Dias_2022.jpg" }
+        { name: "홀란드", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Haaland_2022.jpg" },
+        { name: "로드리", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Rodri_2021.jpg" },
+        { name: "베실바", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Bernardo_Silva_2021.jpg" },
+        { name: "후벵 디아스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Ruben_D%C3%ADaz_2021.jpg" }
       ],
       liverpool: [
-        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Mohamed_Salah_2022.jpg" },
-        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Virgil_van_Dijk_2022.jpg" },
-        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Guido_Soboslai_2023.jpg" },
-        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Alisson_Becker_2022.jpg" }
+        { name: "살라", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Mohamed_Salah_2022.jpg" },
+        { name: "반다이크", img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Virgil_van_Dijk_2022.jpg" },
+        { name: "소보슬라이", img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Dominik_Szoboszlai_2023.jpg" },
+        { name: "알리송", img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Alisson_Becker_2022.jpg" }
       ],
       arsenal: [
-        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bukayo_Saka_2022.jpg" },
-        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Declan_Rice_2022.jpg" },
-        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Odegaard_2023.jpg" }
+        { name: "사카", img: "https://upload.wikimedia.org/wikipedia/commons/1/12/Bukayo_Saka_2022.jpg" },
+        { name: "라이스", img: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Declan_Rice_2022.jpg" },
+        { name: "외데고르", img: "https://upload.wikimedia.org/wikipedia/commons/3/35/Odegaard_2023.jpg" }
       ],
       chelsea: [
-        { name: "콜파머", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Lewis_Hall_2022.jpg" },
-        { name: "무드릭", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Mykhailo_Mudryk_2022.jpg" },
-        { name: "잭슨", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Christopher_Jackson_2022.jpg" }
+        { name: "콜파머", img: "https://upload.wikimedia.org/wikipedia/commons/2/26/Cole_Palmer_2022.jpg" },
+        { name: "무드릭", img: "https://upload.wikimedia.org/wikipedia/commons/7/76/Mykhailo_Mudryk_2022.jpg" },
+        { name: "잭슨", img: "https://upload.wikimedia.org/wikipedia/commons/6/63/Nicolas_Jackson_2023.jpg" }
       ],
       man_utd: [
-        { name: "브루노 페르난데스", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Bruno_Fernandes_2023.jpg" },
-        { name: "가르나초", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Garnacho_2023.jpg" },
-        { name: "디알로", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Amad_Diallo_2022.jpg" }
+        { name: "브루노 페르난데스", img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Bruno_Fernandes_2023.jpg" },
+        { name: "가르나초", img: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Garnacho_2023.jpg" },
+        { name: "디알로", img: "https://upload.wikimedia.org/wikipedia/commons/7/77/Amad_Diallo_2022.jpg" }
       ],
       tottenham: [
-        { name: "손흥민", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Son_Heung-min_2022.jpg" },
-        { name: "메디슨", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/James_Maddison_2023.jpg" },
-        { name: "로메로", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Cristian_Romero_2023.jpg" },
-        { name: "판더벤", img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Van_den_Boomen_2023.jpg" }
+        { name: "손흥민", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Son_Heung-min_2022.jpg" },
+        { name: "메디슨", img: "https://upload.wikimedia.org/wikipedia/commons/e/ec/James_Maddison_2023.jpg" },
+        { name: "로메로", img: "https://upload.wikimedia.org/wikipedia/commons/9/96/Cristian_Romero_2023.jpg" },
+        { name: "판더벤", img: "https://upload.wikimedia.org/wikipedia/commons/0/04/Micky_van_de_Ven_2023.jpg" }
       ]
     };
 
