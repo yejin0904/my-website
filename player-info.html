@@ -147,6 +147,15 @@
             age: 28,
             nationality: "스페인",
             season: "22-23 시즌 56경기 4골 7도움"
+          },
+          "데브라이너": {
+            img: "https://cdn.mediotiempo.com/uploads/media/2023/06/10/kevin-de-bruyne-previo-final.jpg",
+            height: "181cm",
+            weight: "70kg",
+            position: "미드필더",
+            age: 32,
+            nationality: "벨기에",
+            season: "22-23 시즌 49경기 10골 31도움"
           }
         }
       },
@@ -161,6 +170,24 @@
             age: 31,
             nationality: "이집트",
             season: "22-23 시즌 51경기 30골 16도움"
+          },
+          "반다이크": {
+            img: "https://cdn.vox-cdn.com/thumbor/VpEoKjK-GCSzfEq7GiNjMgt03t4=/0x0:4928x3280/1200x800/filters:focal(2070x710:2842x1482)/cdn.vox-cdn.com/uploads/chorus_image/image/72150868/usa_today_20131391.0.jpg",
+            height: "193cm",
+            weight: "92kg",
+            position: "수비수",
+            age: 32,
+            nationality: "네덜란드",
+            season: "22-23 시즌 41경기 3골"
+          },
+          "알리송": {
+            img: "https://cdn.vox-cdn.com/thumbor/77JqlebsAyhVNoE4tqFhZg5H7_Q=/0x0:4727x3148/1200x800/filters:focal(1986x844:2742x1600)/cdn.vox-cdn.com/uploads/chorus_image/image/72151782/usa_today_20132113.0.jpg",
+            height: "191cm",
+            weight: "91kg",
+            position: "골키퍼",
+            age: 31,
+            nationality: "브라질",
+            season: "22-23 시즌 46경기 14클린시트"
           }
         }
       }
@@ -177,14 +204,13 @@
       document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
       document.getElementById("player-name").textContent = playerName;
       document.getElementById("player-img").src = playerData.img;
-      document.getElementById("player-info").innerHTML = `
-        <strong>포지션:</strong> ${playerData.position}<br/>
+      document.getElementById("player-info").innerHTML = 
+        `<strong>포지션:</strong> ${playerData.position}<br/>
         <strong>나이:</strong> ${playerData.age}세<br/>
         <strong>국적:</strong> ${playerData.nationality}<br/>
         <strong>키:</strong> ${playerData.height}<br/>
         <strong>몸무게:</strong> ${playerData.weight}<br/>
-        <strong>최근 시즌 기록:</strong> ${playerData.season}
-      `;
+        <strong>최근 시즌 기록:</strong> ${playerData.season}`;
     } else {
       document.querySelector(".content").innerHTML = "<p>선수 정보를 찾을 수 없습니다.</p>";
     }
