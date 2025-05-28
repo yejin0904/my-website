@@ -37,22 +37,22 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 40px;
+      gap: 80px; /* 간격 더 넓힘 */
       padding: 30px;
-      background-color: rgba(0, 0, 0, 0.4); /* 더 투명하고 밝게 */
+      background-color: rgba(0, 0, 0, 0.4);
       border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2); /* 조금 밝은 그림자 */
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
       justify-content: flex-start;
     }
 
     .player-img {
-      width: 350px;
+      width: 420px; /* 사진 크기 키움 */
       max-width: 100%;
       border-radius: 20px;
       border: 5px solid white;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
       object-fit: cover;
-      align-self: center; /* 수직 중앙 정렬 */
+      align-self: center; /* 수직 가운데 */
     }
 
     .info-section {
@@ -70,7 +70,7 @@
     }
 
     .player-info strong {
-      color: #FFD700; /* 골드색 강조 */
+      color: #FFD700;
     }
 
     .back-btn {
@@ -118,9 +118,7 @@
     <img id="player-img" class="player-img" src="" alt="선수 이미지" />
     <div class="info-section">
       <div class="player-name" id="player-name">선수 이름</div>
-      <div class="player-info" id="player-info">
-        <!-- 선수 상세정보가 들어갑니다 -->
-      </div>
+      <div class="player-info" id="player-info"></div>
     </div>
   </div>
 
