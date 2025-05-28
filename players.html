@@ -11,7 +11,24 @@
       color: white;
       text-align: center;
       padding: 40px;
+      position: relative;
+      overflow: hidden;
     }
+
+    body.mancity-bg::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://img1.newsis.com/2024/05/20/NISI20240520_0001111378_web.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
     .players-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -19,16 +36,19 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .grid-2x2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 50px 60px;
     }
+
     .player {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .player img {
       width: 240px;
       height: 240px;
@@ -37,11 +57,13 @@
       border: 4px solid #fff;
       box-shadow: 0 6px 16px rgba(255, 255, 255, 0.3);
     }
+
     .player-name {
       margin-top: 20px;
       font-size: 1.8rem;
       font-weight: bold;
     }
+
     h1 {
       font-size: 3rem;
       margin-bottom: 60px;
@@ -60,7 +82,6 @@
         { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
         { name: "후벵 디아스", img: "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/kz/2024/11/15/news-p.v1.20241115.611f4aa7904049dcadfd67deedbdfcdf_P1.jpg" }
       ],
-      // 생략된 데이터는 동일하게 유지
       liverpool: [
         { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
         { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
@@ -96,7 +117,11 @@
     if (playersData[team]) {
       const players = playersData[team];
 
-      // 4명일 경우 2x2 그리드 적용
+      // 맨시티 배경 이미지 클래스 적용
+      if (team === "man_city") {
+        document.body.classList.add("mancity-bg");
+      }
+
       if (players.length === 4) {
         container.className = "grid-2x2";
       }
@@ -123,4 +148,3 @@
   </script>
 </body>
 </html>
-
