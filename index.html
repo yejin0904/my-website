@@ -19,8 +19,12 @@
       position: relative;
     }
     header {
-      background-color: navy; text-align: center; padding: 20px;
-      border-bottom: 4px solid #003366; position: relative; z-index: 1;
+      /* 배경 없앰 */
+      text-align: center; 
+      padding: 20px;
+      border-bottom: 4px solid #003366; 
+      position: relative; 
+      z-index: 1;
     }
     .header-content {
       display: flex; align-items: center; justify-content: center; gap: 20px;
@@ -30,7 +34,8 @@
     }
     .header-content h1 {
       font-size: 3.5vw; margin: 0; color: #ffffff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      /* 배경 없으니 텍스트 쉐도우로 가독성 향상 */
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
     }
     .team-buttons {
       display: flex; flex-direction: column; align-items: center;
@@ -111,7 +116,7 @@
 
   <!-- 트로피 버튼 -->
   <div class="trophy-button">
-    <img src="https://e7.pngegg.com/pngimages/492/150/png-clipart-silver-barclays-trophy-premier-league-uefa-champions-league-manchester-city-f-c-trophy-leicester-city-f-c-premier-league-trophy-uefa-champions-league-manchester-city-f-c-thumbnail.png" alt="트로피" onclick="goToAwards()" />
+    <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3770/fc98fedea430a2c7020714ba630d540233e45cbcc96ac9c6b48e4b81d53c.jpg" alt="트로피" onclick="goToAwards()" />
   </div>
 
   <script>
