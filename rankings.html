@@ -16,4 +16,73 @@
     }
     h1 {
       color: gold;
-      font-size
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      font-weight: 500;
+    }
+    th {
+      background-color: gold;
+      color: #003366;
+      font-weight: 700;
+    }
+    tr:hover {
+      background-color: rgba(255, 215, 0, 0.2);
+    }
+    .back-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: gold;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      color: #003366;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(255,215,0,0.6);
+      transition: background 0.3s ease;
+    }
+    .back-button:hover {
+      background: #ffd700cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>2024-25 EPL 팀 순위</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>순위</th>
+        <th>팀명</th>
+        <th>승</th>
+        <th>무</th>
+        <th>패</th>
+        <th>승점</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>맨체스터 시티</td><td>28</td><td>6</td><td>4</td><td>90</td></tr>
+      <tr><td>2</td><td>아스널</td><td>25</td><td>7</td><td>6</td><td>82</td></tr>
+      <tr><td>3</td><td>리버풀</td><td>24</td><td>8</td><td>6</td><td>80</td></tr>
+      <tr><td>4</td><td>첼시</td><td>21</td><td>10</td><td>7</td><td>73</td></tr>
+      <tr><td>5</td><td>맨체스터 유나이티드</td><td>19</td><td>9</td><td>10</td><td>66</td></tr>
+      <tr><td>6</td><td>토트넘</td><td>17</td><td>11</td><td>10</td><td>62</td></tr>
+    </tbody>
+  </table>
+
+  <button class="back-button" onclick="location.href='awards.html'">⬅ 뒤로가기</button>
+</body>
+</html>
