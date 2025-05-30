@@ -28,8 +28,8 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%; /* 전체 높이 채움 */
-      background: url('https://www.ftimes.kr/news/photo/202405/25944_32024_3447.jpg') no-repeat center center;
+      height: 100%;
+      background: url('https://www.ftimes.kr/news/photo/201405/25944_32024_3447.jpg') no-repeat center center;
       background-size: cover;
       opacity: 0.15;
       pointer-events: none;
@@ -68,7 +68,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 8vh 2vw;
+      padding: 8vh 2vw 4vh;
       gap: 5vh;
       max-width: 1200px;
       margin: 0 auto;
@@ -97,6 +97,24 @@
     .row img:hover {
       transform: scale(1.1);
       filter: brightness(1.2);
+    }
+
+    .trophy-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 4vh;
+      z-index: 1;
+    }
+
+    .trophy-button img {
+      width: 120px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .trophy-button img:hover {
+      transform: scale(1.1);
     }
 
     @media screen and (max-width: 768px) {
@@ -143,9 +161,18 @@
     </div>
   </div>
 
+  <!-- 트로피 버튼 -->
+  <div class="trophy-button">
+    <img src="https://img.freepik.com/free-psd/golden-trophy-isolated-transparent-background_84443-25441.jpg?semt=ais_hybrid&w=740" alt="트로피" onclick="goToAwards()" />
+  </div>
+
   <script>
     function goToTeam(team) {
       window.location.href = `players.html?team=${team}`;
+    }
+
+    function goToAwards() {
+      window.location.href = "awards.html";
     }
   </script>
 
