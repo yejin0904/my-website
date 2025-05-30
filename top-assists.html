@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2024-25 EPL 도움왕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0; padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #001f3f, #003366);
+      color: white;
+      min-height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      color: gold;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    .player-card {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(255,215,0,0.5);
+    }
+    .player-card img {
+      width: 150px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .player-card h2 {
+      margin: 10px 0 5px;
+      color: gold;
+    }
+    .player-card p {
+      margin: 5px 0;
+      font-weight: 500;
+    }
+    .back-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: gold;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      color: #003366;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(255,215,0,0.6);
+      transition: background 0.3s ease;
+    }
+    .back-button:hover {
+      background: #ffd700cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>2024-25 EPL 도움왕</h1>
+  <div class="player-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Mohamed_Salah_2018.jpg" alt="모하메드 살라" />
+    <h2>모하메드 살라</h2>
+    <p>팀: 리버풀</p>
+    <p>도움: 15회</p>
+    <p>포지션: 윙어</p>
+  </div>
+
+  <button class="back-button" onclick="location.href='awards.html'">⬅ 뒤로가기</button>
+</body>
+</html>
