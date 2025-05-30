@@ -23,12 +23,31 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
       margin-bottom: 0;
     }
+    .back-button {
+      margin-top: 10px;
+      background: transparent;
+      border: 2px solid gold;
+      border-radius: 12px;
+      color: gold;
+      padding: 8px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 8px rgba(255,215,0,0.4);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .back-button:hover {
+      background: gold;
+      color: #003366;
+    }
     .buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
       margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
     }
     button {
       background: gold;
@@ -42,6 +61,7 @@
       box-shadow: 0 6px 12px rgba(255,215,0,0.5);
       transition: background 0.3s ease;
       min-width: 160px;
+      flex: 1 1 160px;
     }
     button:hover {
       background: #ffd700cc;
@@ -51,12 +71,17 @@
         width: 100%;
         font-size: 1.2rem;
       }
+      .back-button {
+        width: 100%;
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <h1>🏆 2024-25 EPL 시상식 🏆</h1>
+  <button class="back-button" onclick="location.href='index.html'">← 홈으로 가기</button>
 
   <div class="buttons">
     <button onclick="location.href='rankings.html'">팀 순위</button>
@@ -66,4 +91,3 @@
 
 </body>
 </html>
-
