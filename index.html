@@ -10,15 +10,17 @@
     body, html {
       margin: 0; padding: 0; height: 100%;
       font-family: 'Poppins', sans-serif;
-      background: url('https://cdn.pixabay.com/photo/2016/09/02/20/57/soccer-1647574_960_720.jpg') no-repeat center center fixed;
-      background-size: cover; color: white; overflow-x: hidden; position: relative;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('https://cdn.pixabay.com/photo/2016/09/02/20/57/soccer-1647574_960_720.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white; 
+      overflow-x: hidden; 
+      position: relative;
     }
-    body::after {
-      content: "";
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: url('https://www.ftimes.kr/news/photo/201405/25944_32024_3447.jpg') no-repeat center center;
-      background-size: cover; opacity: 0.15; pointer-events: none; z-index: 0;
-    }
+
+    /* body::after 삭제해서 배경 덮는 가상요소 제거 */
+
     header {
       background-color: navy; text-align: center; padding: 20px;
       border-bottom: 4px solid #003366; position: relative; z-index: 1;
