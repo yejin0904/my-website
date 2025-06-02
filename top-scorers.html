@@ -7,9 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      margin: 0; padding: 20px;
+      margin: 0;
+      padding: 20px;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #001f3f, #003366);
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://upload2.inven.co.kr/upload/2018/11/27/bbs/i15390168978.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       min-height: 100vh;
       text-align: center;
@@ -17,57 +21,44 @@
     h1 {
       color: gold;
       font-size: 2.8rem;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
     .player-card {
-      max-width: 400px;
+      max-width: 420px;
       margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 6px 12px rgba(255,215,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 14px rgba(255,215,0,0.5);
     }
     .player-card img {
-      width: 150px;
+      width: 160px;
       border-radius: 50%;
       margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
     .player-card h2 {
-      margin: 10px 0 5px;
+      margin: 12px 0 8px;
       color: gold;
+      font-size: 1.8rem;
     }
-    .player-card p {
-      margin: 5px 0;
+    .player-card .info {
+      font-size: 1.15rem;
       font-weight: 500;
+      line-height: 1.8;
     }
     .back-button {
-      margin-top: 30px;
-      padding: 10px 20px;
+      margin-top: 35px;
+      padding: 12px 26px;
       background: gold;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: 700;
       color: #003366;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(255,215,0,0.6);
+      box-shadow: 0 5px 10px rgba(255,215,0,0.7);
       transition: background 0.3s ease;
+      font-size: 1.1rem;
     }
-    .back-button:hover {
-      background: #ffd700cc;
-    }
-  </style>
-</head>
-<body>
-  <h1>2024-25 EPL 득점왕</h1>
-  <div class="player-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Erling_Haaland_2022.jpg" alt="얼링 홀란드" />
-    <h2>얼링 홀란드</h2>
-    <p>팀: 맨체스터 시티</p>
-    <p>득점: 36골</p>
-    <p>포지션: 스트라이커</p>
-  </div>
-
-  <button class="back-button" onclick="location.href='awards.html'">⬅ 뒤로가기</button>
-</body>
-</html>
+    .
