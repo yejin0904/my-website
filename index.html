@@ -2,123 +2,376 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EPL TOP 6</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>선수 정보</title>
   <style>
-    * { box-sizing: border-box; }
-    body, html {
-      margin: 0; padding: 0; height: 100%;
+    body {
       font-family: 'Poppins', sans-serif;
-      background:
-        linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
-        url('https://png.pngtree.com/thumb_back/fw800/background/20230524/pngtree-soccer-stadium-with-lights-at-night-image_2611674.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #111;
       color: white;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 40px 20px 80px;
+      min-height: 100vh;
       position: relative;
+      overflow-x: hidden;
     }
-    header {
-      text-align: center; 
-      padding: 20px;
-      border-bottom: 4px solid #003366; 
-      position: relative; 
-      z-index: 1;
+    #background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: brightness(0.7);
+      opacity: 0.6;
+      z-index: -1;
+      transition: background-image 0.5s ease-in-out;
     }
-    .header-content {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-    }
-    .header-content img {
-      width: 60px; height: auto;
-    }
-    .header-content h1 {
-      font-size: 3.5vw; margin: 0; color: #ffffff;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-    }
-    .team-buttons {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 8vh 2vw 4vh; gap: 5vh; max-width: 1200px; margin: 0 auto; z-index: 1;
-    }
-    .row {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 4vw; width: 100%;
-    }
-    .row img {
-      width: clamp(120px, 18vw, 200px);
-      height: clamp(120px, 18vw, 200px);
-      object-fit: contain;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-    }
-    .row img:hover {
-      transform: scale(1.1);
-      filter: brightness(1.2);
-    }
-    .trophy-button {
+    .content {
+      max-width: 1400px;
+      margin: auto;
       display: flex;
-      justify-content: center;
-      margin-top: 4vh;
-      z-index: 1;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 200px;
+      padding: 60px;
+      background-color: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
     }
-    .trophy-button img {
-      width: 120px;
-      height: auto;
+    .player-img {
+      width: 500px;
+      max-width: 100%;
+      border-radius: 20px;
+      border: 5px solid white;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      object-fit: cover;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .info-section {
+      flex: 1;
+      text-align: left !important;
+      line-height: 1.8;
+      font-size: 1.4rem;
+      align-self: center;
+    }
+    .player-name {
+      font-size: 2.7rem;
+      margin-bottom: 25px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-align: left !important;
+    }
+    .player-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left !important;
+    }
+    .info-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      column-gap: 12px;
+      align-items: start;
+      text-align: left !important;
+    }
+    .label {
+      color: #FFD700;
+      font-weight: 700;
+      white-space: nowrap;
+      text-align: left !important;
+    }
+    .value, .value-wrap {
+      text-align: left !important;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.4;
+      max-width: 100%;
+    }
+    .back-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 28px;
+      background-color: white;
+      color: black;
+      border-radius: 12px;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
-    .trophy-button img:hover {
-      transform: scale(1.1);
+    .back-btn:hover {
+      background-color: #f0c040;
+      color: #111;
     }
-    @media screen and (max-width: 768px) {
-      .header-content h1 {
-        font-size: 6vw;
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        text-align: left !important;
+        gap: 30px;
       }
-      .header-content img {
-        width: 50px;
+      .player-img {
+        width: 90%;
+        margin: 0 auto;
       }
-    }
-    @media screen and (max-width: 480px) {
-      .header-content h1 {
-        font-size: 7vw;
+      .info-section {
+        font-size: 1.1rem;
+        text-align: left !important;
       }
-      .header-content img {
-        width: 40px;
+      .info-row {
+        grid-template-columns: 100px 1fr;
       }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="header-content">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 왼쪽" />
-      <h1>EPL TOP 6</h1>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 오른쪽" />
-    </div>
-  </header>
-
-  <div class="team-buttons">
-    <div class="row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" alt="맨체스터 시티" onclick="goToTeam('man_city')" />
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="리버풀" onclick="goToTeam('liverpool')" />
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" alt="토트넘" onclick="goToTeam('tottenham')" />
+  <div id="background"></div>
+  <div class="content">
+    <img id="player-img" class="player-img" src="" alt="선수 이미지" />
+    <div class="info-section">
+      <div class="player-name" id="player-name">선수 이름</div>
+      <div class="player-info" id="player-info"></div>
     </div>
   </div>
-
-  <div class="trophy-button">
-    <img src="https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3770/fc98fedea430a2c7020714ba630d540233e45cbcc96ac9c6b48e4b81d53c.jpg" alt="트로피" onclick="goToAwards()" />
-  </div>
+  <a class="back-btn" href="javascript:history.back()">← 목록으로</a>
 
   <script>
-    function goToTeam(team) {
-      window.location.href = `players.html?team=${team}`;
-    }
-    function goToAwards() {
-      window.location.href = "awards.html";
+    const playersInfo = {
+      man_city: {
+        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+        players: {
+          "홀란드": {
+            img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg",
+            height: "195cm",
+            weight: "88kg",
+            position: "스트라이커",
+            age: 24,
+            nationality: "노르웨이",
+            season: "24-25 프리미어 리그 선발 43경기\n교체 1경기\n31득점 4도움",
+            awards: [
+              "골든 부츠 22-23",
+              "프리미어 리그 올해의 선수 22-23",
+              "프리미어 리그 득점왕 22-23, 23-24",
+              "발롱도르 2위: 2023"
+            ]
+          },
+          "로드리": {
+            img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+            height: "191cm",
+            weight: "82kg",
+            position: "수비형 미드필더",
+            age: 28,
+            nationality: "스페인",
+            season: "24-25 프리미어 리그 선발 1경기\n교체 2경기",
+            awards: ["발롱도르 1위: 2024년"]
+          },
+          "베실바": {
+            img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg",
+            height: "173cm",
+            weight: "65kg",
+            position: "미드필더, 윙어",
+            age: 30,
+            nationality: "포르투갈",
+            season: "24-25 시즌 선발 프리미어 리그 22경기\n교체 4경기\n2득점 4도움",
+            awards: [
+              "맨체스터 시티 올해의 선수: 18-19",
+              "맨체스터 시티 올해의 골: 21-22"
+            ]
+          },
+          "케빈 데브라이너": {
+            img: "https://cdn.jejumaeil.net/news/photo/202106/302188_81878_3710.jpg",
+            height: "181cm",
+            weight: "75kg",
+            position: "미드필더",
+            age: 33,
+            nationality: "벨기에",
+            season: "24-25 프리미어 리그 선발 19경기\n교체 9경기\n4득점 7도움",
+            awards: [
+              "프리미어 리그 도움왕:16-17, 17-18, 19-20, 22-23",
+              "프리미어 리그 올해의 플레이메이커: 17-18, 19-20, 22-23",
+              "맨체스터 시티 올해의 선수: 15-16, 17-18, 19-20, 21-22",
+              "발롱도르 3위: 2022"
+            ]
+          },
+          "후뱅 디아스": {
+            img: "https://image.fmkorea.com/files/attach/new3/20240120/33854530/2813613721/6632728993/b9c0bfde260a82656ae6e65a5af7d880.jpg",
+            height: "187cm",
+            weight: "82kg",
+            position: "센터백",
+            age: 28,
+            nationality: "포르투갈",
+            season: "24-25 프리미어 리그 선발 25경기\n교체 2경기",
+            awards: [
+              "프리미어 리그 올해의 선수: 20-21",
+              "맨체스터 시티 올해의 선수: 20-21"
+            ]
+          },
+          "포든": {
+            img: "https://www.mancity.com/meta/media/fkblpjr4/phil-foden-nomination.jpg?width=1620",
+            height: "171cm",
+            weight: "70kg",
+            position: "미드필더, 윙어",
+            age: 25,
+            nationality: "잉글랜드",
+            season: "24-25 프리미어 리그 선발 20경기\n교체 7경기\n7득점 2도움",
+            awards: [
+              "프리미어 리그 올해의 선수: 23-24",
+              "맨체스터 시티 올해의 선수: 23-24",
+              "프리미어 리그 올해의 영플레이어: 20-21, 21-22"
+            ]
+          }
+        }
+      },
+      liverpool: {
+        teamBackground: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+        players: {
+          "살라": {
+            img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60",
+            height: "175cm",
+            weight: "71kg",
+            position: "윙어",
+            age: 32,
+            nationality: "이집트",
+            season: "24-25 시즌 선발 프리미어 리그 38경기\n교체 0경기\n29득점 18도움",
+            awards: [
+              "프리미어 리그 득점왕 17-18,18-19,21-22,24-25",
+              "프리미어 리그 도움왕 21-22,24-25",
+              "프리미어 리그 이달의 선수 최다 수상: 7회",
+              "FIFA 푸스카스상: 2018"
+            ]
+          },
+          "반다이크": {
+            img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg",
+            height: "195cm",
+            weight: "92kg",
+            position: "센터백",
+            age: 33,
+            nationality: "네덜란드",
+            season: "24-25 시즌 선발 프리미어 리그 32경기\n교체 0경기\n2득점 1도움",
+            awards: [
+              "발롱도르 2위: 2019",
+              "프리미어 리그 올해의 선수: 2018-19",
+              "프리미어 리그 수비수 최다 헤더 득점: 18골"
+            ]
+          },
+          "소보슬라이": {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s",
+            height: "186cm",
+            weight: "74kg",
+            position: "미드필더, 윙어",
+            age: 24,
+            nationality: "헝가리",
+            season: "24-25 시즌 선발 프리미어 리그 27경기\n교체 8경기\n6득점 5도움",
+            awards: ["프리미어 리그 내 수상은 없음"]
+          },
+          "알리송": {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s",
+            height: "193cm",
+            weight: "91kg",
+            position: "골기퍼",
+            age: 32,
+            nationality: "브라질",
+            season: "24-25 시즌 선발 프리미어 리그 13경기\n6클린시트\n9실점",
+            awards: [
+              "프리미어 리그 골든글러브: 18-19, 21-22",
+              "리버풀 올해의 선수: 22-23",
+              "Goal 50 세계 최고의 골키퍼: 18, 19"
+            ]
+          }
+        }
+      },
+      tottenham: {
+  teamBackground: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg",
+  players: {
+    "손흥민 ": {
+      img:  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s",
+      height: "182cm",
+      weight: "77kg",
+      position: "윙어",
+      age: 32,
+      nationality: "대한민국",
+      season: "24-25 프리미어 리그 선발 24경기\n교체 6경기\n7득점 9도움",
+      awards: [
+        "구단 역대 프리미어 리그 도움 1위",
+        "프리미어 리그 득점왕: 21-22",
+        "FIFA 푸스카스상: 20",
+        "프리미어 리그 올해의 골: 19-20",
+        "토트넘 홋스퍼 원 홋스퍼 올해의 선수: 18-19, 19-20, 21-22"
+      ]
+    },
+    "메디슨": {
+      img: "https://static.independent.co.uk/2025/01/25/12/ff6076d4bf0d2348a2be700175e78d82Y29udGVudHNlYXJjaGFwaSwxNzM3ODE4NTg3-2.78775910.jpg" ",
+      height: "175cm",
+      weight: "73kg",
+      position: "미드필더",
+      age: 28,
+      nationality: "영국",
+      season: "24-25 프리미어 리그 선발 21경기\n교체 10경기\n9득점 7도움",
+      awards: [
+       "프리미어 리그 이달의 선수: 23년 08월",
+        "프리미어 리그 이달의 골: 20년 09월"
+      ]
+    },
+    "로메로": {
+      img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" ,
+      height: "185cm",
+      weight: "80kg",
+      position: "센터백",
+      age: 27,
+      nationality: "아르헨티나",
+      season: "24-25 프리미어 리그 선발 18경기\n교체 0경기\n1득점 1도움",
+      awards: [
+        "프리미어 리그 내 수상은 없음"
+      ]
+    },
+    "판더벤": {
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" ,
+      height: "193cm",
+      weight: "81kg",
+      position: "센터백",
+      age: 24,
+      nationality: "네덜란드",
+      season: "24-25 프리미어 리그 정보 없음",
+      awards: [
+        "토트넘 홋스퍼 오피셜 서포터즈 클럽 올해의 선수: 23-24"
+      ]
+    },
+  }
+}
+
+  }
+
+
+    const params = new URLSearchParams(location.search);
+    const team = params.get("team");
+    const playerName = params.get("player");
+
+    const teamData = playersInfo[team];
+    const playerData = teamData?.players[playerName];
+
+    if (teamData && playerData) {
+      document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
+      document.getElementById("player-name").textContent = playerName;
+      document.getElementById("player-img").src = playerData.img;
+      const awardsText = playerData.awards?.join("<br>") || "정보 없음";
+      document.getElementById("player-info").innerHTML = `
+        <div class="info-row"><span class="label">포지션:</span><span class="value">${playerData.position}</span></div>
+        <div class="info-row"><span class="label">나이:</span><span class="value">${playerData.age}세</span></div>
+        <div class="info-row"><span class="label">국적:</span><span class="value">${playerData.nationality}</span></div>
+        <div class="info-row"><span class="label">키:</span><span class="value">${playerData.height}</span></div>
+        <div class="info-row"><span class="label">몸무게:</span><span class="value">${playerData.weight}</span></div>
+        <div class="info-row"><span class="label">시즌 기록:</span><span class="value-wrap">${playerData.season}</span></div>
+        <div class="info-row"><span class="label">수상 내역:</span><span class="value-wrap">${awardsText}</span></div>
+      `;
+    } else {
+      document.body.innerHTML = "<h2>선수 정보가 없습니다.</h2>";
     }
   </script>
-
 </body>
-</html>
+</html> 
