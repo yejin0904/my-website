@@ -41,40 +41,44 @@
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 30px;
-      box-shadow: 0 6px 12px rgba(255,215,0,0.5);
+      box-shadow: 0 6px 16px rgba(255,215,0,0.6);
       text-align: center;
       flex: 1;
       max-width: 320px;
-      transform: translateY(10px);
       scale: 1.15;
       position: relative;
     }
 
     .first {
-      transform: translateY(-10px);
-      scale: 1.2;
+      transform: translateY(-20px);
     }
 
-    /* 득점왕 메달과 동일 크기 스타일 */
-    .medal {
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .rank-badge {
       position: absolute;
-      top: -20px; /* 좀 더 위로 */
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.8rem; /* 크게 */
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 10px 18px;
+      top: -10px;
+      left: -10px;
+      background-color: gold;
+      color: #003366;
+      font-weight: 800;
+      padding: 6px 10px;
       border-radius: 50px;
-      font-weight: 700;
-      box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
-      user-select: none;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
       white-space: nowrap;
-      line-height: 1;
     }
 
-    .gold { color: gold; }
-    .silver { color: silver; }
-    .bronze { color: #cd7f32; }
+    .second .rank-badge {
+      background-color: silver;
+    }
+
+    .third .rank-badge {
+      background-color: #cd7f32; /* bronze */
+    }
 
     .player-card img {
       width: 180px;
@@ -82,12 +86,13 @@
       border-radius: 50%;
       margin-bottom: 20px;
       object-fit: cover;
-      border: 3px solid white;
+      border: 3px solid gold;
     }
 
     .player-card h2 {
       margin: 12px 0 6px;
       color: gold;
+      font-size: 1.4rem;
     }
 
     .player-card p {
@@ -120,12 +125,10 @@
       }
 
       .first {
-        transform: translateY(0);
-        scale: 1.15;
+        transform: none;
       }
 
       .player-card {
-        transform: translateY(0);
         scale: 1.15;
       }
     }
@@ -136,9 +139,11 @@
 
   <div class="podium">
     <!-- 2등: 제이콥 머피 -->
-    <div class="player-card">
-      <div class="medal silver">🥈 2위</div>
-      <img src="https://i.namu.wiki/i/16uW1lpvM8QwoKDpmDnXkDMAmmNt7ME63kfnyRzb65eblEPaRcOKqwPMX-omLQasMMsgCI2uUWDgmCy0xxIccg.webp" alt="제이콥 머피" />
+    <div class="player-card second">
+      <div class="image-container">
+        <span class="rank-badge">2위 🥈</span>
+        <img src="https://i.namu.wiki/i/16uW1lpvM8QwoKDpmDnXkDMAmmNt7ME63kfnyRzb65eblEPaRcOKqwPMX-omLQasMMsgCI2uUWDgmCy0xxIccg.webp" alt="제이콥 머피" />
+      </div>
       <h2>제이콥 머피</h2>
       <p>팀: 뉴캐슬</p>
       <p>도움: 12개</p>
@@ -147,8 +152,10 @@
 
     <!-- 1등: 살라 -->
     <div class="player-card first">
-      <div class="medal gold">🥇 1위</div>
-      <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
+      <div class="image-container">
+        <span class="rank-badge">1위 🥇</span>
+        <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
+      </div>
       <h2>모하메드 살라</h2>
       <p>팀: 리버풀</p>
       <p>도움: 18개</p>
@@ -156,9 +163,11 @@
     </div>
 
     <!-- 3등: 엘랑가 -->
-    <div class="player-card">
-      <div class="medal bronze">🥉 3위</div>
-      <img src="https://i.namu.wiki/i/yb_nB1WX-6pYde__CQwphZWYSemhEpb4YhgHf6enh2XN__GnVtOC029B5x5ykW6JQQy_rknSfkvpEUIVOIl-sA.webp" alt="안토니 엘랑가" />
+    <div class="player-card third">
+      <div class="image-container">
+        <span class="rank-badge">3위 🥉</span>
+        <img src="https://i.namu.wiki/i/yb_nB1WX-6pYde__CQwphZWYSemhEpb4YhgHf6enh2XN__GnVtOC029B5x5ykW6JQQy_rknSfkvpEUIVOIl-sA.webp" alt="안토니 엘랑가" />
+      </div>
       <h2>안토니 엘랑가</h2>
       <p>팀: 노팅엄 포레스트</p>
       <p>도움: 11개</p>
