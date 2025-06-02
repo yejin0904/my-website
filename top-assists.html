@@ -1,3 +1,4 @@
+<!-- 메달 이모지를 포함한 도움왕 페이지 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,6 +48,7 @@
       max-width: 320px;
       transform: translateY(10px);
       scale: 1.15;
+      position: relative;
     }
 
     .first {
@@ -54,12 +56,29 @@
       scale: 1.2;
     }
 
+    .medal {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+
+    .gold { color: gold; }
+    .silver { color: silver; }
+    .bronze { color: #cd7f32; }
+
     .player-card img {
       width: 180px;
       height: 180px;
       border-radius: 50%;
       margin-bottom: 20px;
       object-fit: cover;
+      border: 3px solid white;
     }
 
     .player-card h2 {
@@ -114,6 +133,7 @@
   <div class="podium">
     <!-- 2등: 제이콥 머피 -->
     <div class="player-card">
+      <div class="medal silver">🥈 2위</div>
       <img src="https://i.namu.wiki/i/16uW1lpvM8QwoKDpmDnXkDMAmmNt7ME63kfnyRzb65eblEPaRcOKqwPMX-omLQasMMsgCI2uUWDgmCy0xxIccg.webp" alt="제이콥 머피" />
       <h2>제이콥 머피</h2>
       <p>팀: 뉴캐슬</p>
@@ -123,6 +143,7 @@
 
     <!-- 1등: 살라 -->
     <div class="player-card first">
+      <div class="medal gold">🥇 1위</div>
       <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
       <h2>모하메드 살라</h2>
       <p>팀: 리버풀</p>
@@ -132,6 +153,7 @@
 
     <!-- 3등: 엘랑가 -->
     <div class="player-card">
+      <div class="medal bronze">🥉 3위</div>
       <img src="https://i.namu.wiki/i/yb_nB1WX-6pYde__CQwphZWYSemhEpb4YhgHf6enh2XN__GnVtOC029B5x5ykW6JQQy_rknSfkvpEUIVOIl-sA.webp" alt="안토니 엘랑가" />
       <h2>안토니 엘랑가</h2>
       <p>팀: 노팅엄 포레스트</p>
