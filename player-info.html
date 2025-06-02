@@ -326,10 +326,8 @@
         "프리미어 리그 이달의 선수: 22년 11월 · 12월","아스날 올해의 선수: 22-23, 23-24",
 "아스날 이달의 선수: 21년 3월, 23년 4월"
       ]
-    }
-  }
-},
-       chelsea: {
+    },
+     chelsea: {
   teamBackground: "https://p4.wallpaperbetter.com/wallpaper/296/389/257/soccer-arsenal-f-c-logo-wallpaper-preview.jpg",
   players: {
     "콜파머": {
@@ -344,6 +342,8 @@
         "프리미어 리그 올해의 영플레이어: 23-24",
         "프리미어 리그 이달의 선수: 24년 4월, 9월",
         "첼시 올해의 선수: 23-24",
+        
+        
       ]
     },
     "무드릭": {
@@ -369,9 +369,12 @@
       awards: [
         "프리미어 리그 이달의 골: 2024년 10월"
       ]
-    }
+    },
   }
-},
+}
+
+  }
+}
 
   }
 }
@@ -405,63 +408,4 @@
     }
   </script>
 </body>
-</html>
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const teamKey = urlParams.get('team');
-  const playerName = urlParams.get('player');
-
-  const teamData = playersInfo[teamKey];
-  if (!teamData) {
-    alert("팀 정보가 없습니다.");
-    throw new Error("팀 정보가 없습니다.");
-  }
-
-  const playerData = teamData.players[playerName];
-  if (!playerData) {
-    alert("선수 정보가 없습니다.");
-    throw new Error("선수 정보가 없습니다.");
-  }
-
-  document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
-  document.getElementById("player-img").src = playerData.img;
-  document.getElementById("player-name").textContent = playerName;
-
-  const infoEl = document.getElementById("player-info");
-
-  function createRow(label, value) {
-    const row = document.createElement("div");
-    row.className = "info-row";
-    const labelEl = document.createElement("div");
-    labelEl.className = "label";
-    labelEl.textContent = label;
-    const valueEl = document.createElement("div");
-    valueEl.className = "value";
-    valueEl.textContent = value;
-    row.appendChild(labelEl);
-    row.appendChild(valueEl);
-    return row;
-  }
-
-  infoEl.appendChild(createRow("포지션", playerData.position));
-  infoEl.appendChild(createRow("나이", playerData.age + "세"));
-  infoEl.appendChild(createRow("국적", playerData.nationality));
-  infoEl.appendChild(createRow("키", playerData.height));
-  infoEl.appendChild(createRow("몸무게", playerData.weight));
-  infoEl.appendChild(createRow("시즌 기록", playerData.season));
-
-  if (playerData.awards && playerData.awards.length > 0) {
-    const awardsRow = document.createElement("div");
-    awardsRow.className = "info-row";
-    const labelEl = document.createElement("div");
-    labelEl.className = "label";
-    labelEl.textContent = "수상 경력";
-    const valueWrap = document.createElement("div");
-    valueWrap.className = "value-wrap";
-    valueWrap.innerHTML = playerData.awards.map(a => `• ${a}`).join("<br>");
-    awardsRow.appendChild(labelEl);
-    awardsRow.appendChild(valueWrap);
-    infoEl.appendChild(awardsRow);
-  }
-</script>
-
+</html> 
