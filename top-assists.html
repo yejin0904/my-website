@@ -24,7 +24,7 @@
     h1 {
       color: gold;
       font-size: 2.8rem;
-      margin: 40px 0 10px;
+      margin: 60px 0 30px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     }
 
@@ -32,48 +32,49 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      gap: 20px;
-      margin-top: 30px;
+      gap: 30px;
+      margin-top: 60px;
       flex-wrap: wrap;
     }
 
     .player-card {
       background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
+      border-radius: 20px;
+      padding: 30px;
       box-shadow: 0 6px 12px rgba(255,215,0,0.5);
       text-align: center;
       flex: 1;
-      max-width: 280px;
+      max-width: 320px;
+      transform: translateY(10px);
+      scale: 1.15;
     }
 
     .first {
-      transform: translateY(-30px);
-      max-width: 320px;
-      scale: 1.1;
+      transform: translateY(-10px);
+      scale: 1.2;
     }
 
     .player-card img {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       object-fit: cover;
     }
 
     .player-card h2 {
-      margin: 10px 0 5px;
+      margin: 12px 0 6px;
       color: gold;
     }
 
     .player-card p {
-      margin: 5px 0;
+      margin: 6px 0;
       font-weight: 500;
     }
 
     .back-button {
-      margin: 50px 0 30px;
-      padding: 12px 28px;
+      margin: 100px 0 50px;
+      padding: 14px 32px;
       background: gold;
       border: none;
       border-radius: 12px;
@@ -82,7 +83,7 @@
       cursor: pointer;
       box-shadow: 0 5px 12px rgba(255, 215, 0, 0.8);
       transition: background 0.3s ease;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .back-button:hover {
@@ -96,8 +97,13 @@
       }
 
       .first {
-        transform: none;
-        scale: 1;
+        transform: translateY(0);
+        scale: 1.15;
+      }
+
+      .player-card {
+        transform: translateY(0);
+        scale: 1.15;
       }
     }
   </style>
