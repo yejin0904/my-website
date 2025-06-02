@@ -10,9 +10,9 @@
       margin: 0;
       padding: 20px;
       font-family: 'Poppins', sans-serif;
-      background: 
+      background:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('https://upload2.inven.co.kr/upload/2018/11/27/bbs/i15390168978.jpg') no-repeat center center fixed;
+        url('https://www.sportsgamblingpodcast.com/wp-content/uploads/2020/09/2746E906-F87C-4764-8CE8-E5F1EF18EAA9.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       min-height: 100vh;
@@ -20,36 +20,54 @@
     }
     h1 {
       color: gold;
-      font-size: 2.8rem;
-      margin-bottom: 30px;
+      font-size: 3rem;
+      margin-bottom: 40px;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
     }
+    .podium {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
     .player-card {
-      max-width: 420px;
-      margin: 0 auto;
-      background-color: rgba(0, 0, 0, 0.5);
+      width: 280px;
+      background-color: rgba(0, 0, 0, 0.55);
       border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 6px 14px rgba(255,215,0,0.5);
+      padding: 20px;
+      box-shadow: 0 6px 14px rgba(255,215,0,0.4);
+      transition: transform 0.3s;
+    }
+    .player-card:hover {
+      transform: scale(1.03);
     }
     .player-card img {
-      width: 160px;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
       border-radius: 50%;
       margin-bottom: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
     .player-card h2 {
-      margin: 12px 0 8px;
       color: gold;
-      font-size: 1.8rem;
+      margin: 10px 0 5px;
+      font-size: 1.4rem;
     }
-    .player-card .info {
-      font-size: 1.15rem;
+    .rank {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ffd700;
+      text-shadow: 0 0 5px rgba(255,255,255,0.3);
+    }
+    .info {
+      font-size: 1rem;
+      line-height: 1.6;
       font-weight: 500;
-      line-height: 1.8;
     }
     .back-button {
-      margin-top: 35px;
+      margin-top: 40px;
       padding: 12px 26px;
       background: gold;
       border: none;
@@ -58,7 +76,54 @@
       color: #003366;
       cursor: pointer;
       box-shadow: 0 5px 10px rgba(255,215,0,0.7);
-      transition: background 0.3s ease;
       font-size: 1.1rem;
+      transition: background 0.3s ease;
     }
-    .
+    .back-button:hover {
+      background: #ffd700cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>2024-25 EPL 득점왕</h1>
+  <div class="podium">
+    <!-- 1등 -->
+    <div class="player-card">
+      <div class="rank">🥇 1위</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Mohamed_Salah_2018.jpg" alt="모하메드 살라" />
+      <h2>모하메드 살라</h2>
+      <div class="info">
+        팀: 리버풀<br />
+        득점: 29골<br />
+        포지션: 윙어
+      </div>
+    </div>
+
+    <!-- 2등 -->
+    <div class="player-card">
+      <div class="rank">🥈 2위</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Alexander_Isak_2019.jpg" alt="이삭" />
+      <h2>알렉산더 이삭</h2>
+      <div class="info">
+        팀: 뉴캐슬<br />
+        득점: 23골<br />
+        포지션: 스트라이커
+      </div>
+    </div>
+
+    <!-- 3등 -->
+    <div class="player-card">
+      <div class="rank">🥉 3위</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Erling_Haaland_2022.jpg" alt="홀란드" />
+      <h2>얼링 홀란드</h2>
+      <div class="info">
+        팀: 맨체스터 시티<br />
+        득점: 22골<br />
+        포지션: 스트라이커
+      </div>
+    </div>
+  </div>
+
+  <button class="back-button" onclick="location.href='awards.html'">⬅ 뒤로가기</button>
+</body>
+</html>
