@@ -2,121 +2,119 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EPL TOP 6</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <title>팀별 선수 목록</title>
   <style>
-    * { box-sizing: border-box; }
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background:
-        linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
-        url('https://png.pngtree.com/thumb_back/fw800/background/20230524/pngtree-soccer-stadium-with-lights-at-night-image_2611674.jpg') no-repeat center center fixed;
+    #team-background {
+      width: 100%;
+      height: 300px;
       background-size: cover;
-      color: white;
-      overflow-x: hidden;
-      position: relative;
-    }
-    header {
-      text-align: center; 
-      padding: 20px;
-      border-bottom: 4px solid #003366; 
-      position: relative; 
-      z-index: 1;
-    }
-    .header-content {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-    }
-    .header-content img {
-      width: 60px; height: auto;
-    }
-    .header-content h1 {
-      font-size: 3.5vw; margin: 0; color: #ffffff;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-    }
-    .team-buttons {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 8vh 2vw 4vh; gap: 5vh; max-width: 1200px; margin: 0 auto; z-index: 1;
-    }
-    .row {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 4vw; width: 100%;
-    }
-    .row img {
-      width: clamp(120px, 18vw, 200px);
-      height: clamp(120px, 18vw, 200px);
-      object-fit: contain;
+      background-position: center;
+      margin-bottom: 20px;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 10px;
     }
-    .row img:hover {
-      transform: scale(1.1);
-      filter: brightness(1.2);
+    #players-list div {
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      font-family: Arial, sans-serif;
     }
-    /* 트로피 아이콘 별도 스타일 */
-    .row img.trophy-icon {
-      width: 120px;
+    #players-list img {
+      width: 100px;
       height: auto;
-      padding: 0;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 5px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      vertical-align: middle;
+    }
+    button.trophy-btn {
       background-color: transparent;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      border: none;
+      padding: 0;
+      margin-left: 10px;
+      cursor: pointer;
     }
-    .row img.trophy-icon:hover {
-      transform: scale(1.1);
-      filter: brightness(1.2);
-    }
-    @media screen and (max-width: 768px) {
-      .header-content h1 {
-        font-size: 6vw;
-      }
-      .header-content img {
-        width: 50px;
-      }
-    }
-    @media screen and (max-width: 480px) {
-      .header-content h1 {
-        font-size: 7vw;
-      }
-      .header-content img {
-        width: 40px;
-      }
+    button.trophy-btn img {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-content">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 왼쪽" />
-      <h1>EPL TOP 6</h1>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF5u2asa6lVUEjA_cbwE1WI0ElcQG1up1BfxC1YRFh3Je6Y4CNDbD6ZBdwWSwzVFZxy_0&usqp=CAU" alt="축구공 오른쪽" />
-    </div>
-  </header>
+  <h1>프리미어리그 TOP 6 팀 선수 목록</h1>
 
-  <div class="team-buttons">
-    <div class="row">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" alt="맨체스터 시티" onclick="goToTeam('man_city')" />
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="리버풀" onclick="goToTeam('liverpool')" />
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" alt="토트넘" onclick="goToTeam('tottenham')" />
-      <img
-        src="https://thumbnail9.coupangcdn.com/thumbnails/remote/492x492ex/image/vendor_inventory/3770/fc98fedea430a2c7020714ba630d540233e45cbcc96ac9c6b48e4b81d53c.jpg"
-        alt="트로피"
-        class="trophy-icon"
-        onclick="goToAwards()"
-      />
-    </div>
+  <div id="team-background"></div>
+
+  <div>
+    <button onclick="showTeam('man_city')">맨체스터 시티</button>
+    <button onclick="showTeam('liverpool')">리버풀</button>
+    <button onclick="showTeam('tottenham')">토트넘</button>
+
+    <!-- 트로피 버튼 추가 -->
+    <button class="trophy-btn" onclick="alert('트로피 버튼 클릭!')"
+      title="트로피">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="트로피" />
+    </button>
   </div>
 
+  <div id="players-list"></div>
+
   <script>
-    function goToTeam(team) {
-      window.location.href = `players.html?team=${team}`;
+    const playersData = {
+      man_city: [
+        { name: "홀란드", img: "https://cdn.spotvnews.co.kr/news/thumbnail/202210/553987_774434_2325_v150.jpg" },
+        { name: "로드리", img: "https://assets.goal.com/images/v3/bltf2147a46793559a3/5fef60175cbbdd3c3069eca4b363851379e4b42f.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+        { name: "베실바", img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg" },
+        { name: "케빈 데브라이너", img: "https://cdn.jejumaeil.net/news/photo/202106/302188_81878_3710.jpg" },
+        { name: "후뱅 디아스", img: "https://image.fmkorea.com/files/attach/new3/20240120/33854530/2813613721/6632728993/b9c0bfde260a82656ae6e65a5af7d880.jpg" },
+        { name: "포든", img: "https://www.mancity.com/meta/media/fkblpjr4/phil-foden-nomination.jpg?width=1620" }
+      ],
+      liverpool: [
+        { name: "살라", img: "https://assets.goal.com/images/v3/bltdeedfcdd7d19750d/GettyImages-1236842023.jpg?auto=webp&format=pjpg&width=3840&quality=60" },
+        { name: "반다이크", img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" },
+        { name: "소보슬라이", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" },
+        { name: "알리송", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" }
+      ],
+      tottenham: [
+        { name: "손흥민", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_3_YY_LYldKYM-PNg2g7VN4grIXb_uB5Hw&s" },
+        { name: "메디슨", img: "https://static.independent.co.uk/2025/01/25/12/ff6076d4bf0d2348a2be700175e78d82Y29udGVudHNlYXJjaGFwaSwxNzM3ODE4NTg3-2.78775910.jpg" },
+        { name: "로메로", img: "https://images.khan.co.kr/article/2024/09/11/news-p.v1.20240613.36799475215d450c80e11982142c9e7a_P1.jpg" },
+        { name: "판더벤", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgNqALND4E8AnqifCQLSbuUrUJhdmmTAxfoQ&s" }
+      ]
+    };
+
+    const teamBackgrounds = {
+      man_city: "https://p4.wallpaperbetter.com/wallpaper/188/87/652/soccer-manchester-city-f-c-logo-wallpaper-preview.jpg",
+      liverpool: "https://p4.wallpaperbetter.com/wallpaper/996/494/369/soccer-liverpool-f-c-logo-wallpaper-preview.jpg",
+      tottenham: "https://p4.wallpaperbetter.com/wallpaper/301/271/762/soccer-tottenham-hotspur-f-c-logo-wallpaper-preview.jpg"
+    };
+
+    function showTeam(team) {
+      document.getElementById('team-background').style.backgroundImage = `url(${teamBackgrounds[team]})`;
+
+      const playersDiv = document.getElementById('players-list');
+      playersDiv.innerHTML = '';
+
+      playersData[team].forEach(player => {
+        const playerElem = document.createElement('div');
+        playerElem.innerHTML = `
+          <img src="${player.img}" alt="${player.name}">
+          <div>${player.name}</div>
+        `;
+        playersDiv.appendChild(playerElem);
+      });
     }
-    function goToAwards() {
-      window.location.href = "awards.html";
-    }
+
+    // 페이지 로드 시 맨체스터 시티 선수 목록 기본 표시
+    showTeam('man_city');
   </script>
 
 </body>
