@@ -8,119 +8,129 @@
   <style>
     body {
       margin: 0;
-      padding: 20px;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
         url('https://www.sportsgamblingpodcast.com/wp-content/uploads/2020/09/2746E906-F87C-4764-8CE8-E5F1EF18EAA9.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       min-height: 100vh;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     h1 {
       color: gold;
-      font-size: 3rem;
-      margin-bottom: 40px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      font-size: 2.8rem;
+      margin: 40px 0 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     }
+
     .podium {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 30px;
+      align-items: flex-end;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
     }
+
     .player-card {
-      width: 280px;
-      background-color: rgba(0, 0, 0, 0.55);
-      border-radius: 16px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
       padding: 20px;
-      box-shadow: 0 6px 14px rgba(255,215,0,0.4);
-      transition: transform 0.3s;
+      box-shadow: 0 6px 12px rgba(255,215,0,0.5);
+      text-align: center;
+      flex: 1;
+      max-width: 280px;
     }
-    .player-card:hover {
-      transform: scale(1.03);
+
+    .first {
+      transform: translateY(-30px);
+      max-width: 320px;
+      scale: 1.1;
     }
+
     .player-card img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      object-fit: cover;
     }
+
     .player-card h2 {
-      color: gold;
       margin: 10px 0 5px;
-      font-size: 1.4rem;
+      color: gold;
     }
-    .rank {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #ffd700;
-      text-shadow: 0 0 5px rgba(255,255,255,0.3);
-    }
-    .info {
-      font-size: 1rem;
-      line-height: 1.6;
+
+    .player-card p {
+      margin: 5px 0;
       font-weight: 500;
     }
+
     .back-button {
-      margin-top: 40px;
-      padding: 12px 26px;
+      margin: 50px 0 30px;
+      padding: 12px 28px;
       background: gold;
       border: none;
       border-radius: 12px;
       font-weight: 700;
       color: #003366;
       cursor: pointer;
-      box-shadow: 0 5px 10px rgba(255,215,0,0.7);
-      font-size: 1.1rem;
+      box-shadow: 0 5px 12px rgba(255, 215, 0, 0.8);
       transition: background 0.3s ease;
+      font-size: 1.1rem;
     }
+
     .back-button:hover {
       background: #ffd700cc;
+    }
+
+    @media (max-width: 768px) {
+      .podium {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .first {
+        transform: none;
+        scale: 1;
+      }
     }
   </style>
 </head>
 <body>
   <h1>2024-25 EPL 득점왕</h1>
+
   <div class="podium">
-    <!-- 1등 -->
+    <!-- 2등: 이삭 -->
     <div class="player-card">
-      <div class="rank">🥇 1위</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Mohamed_Salah_2018.jpg" alt="모하메드 살라" />
-      <h2>모하메드 살라</h2>
-      <div class="info">
-        팀: 리버풀<br />
-        득점: 29골<br />
-        포지션: 윙어
-      </div>
-    </div>
-
-    <!-- 2등 -->
-    <div class="player-card">
-      <div class="rank">🥈 2위</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Alexander_Isak_2019.jpg" alt="이삭" />
+      <img src="https://i.namu.wiki/i/-vJwU-hGYWYKjSQFy2S2ObnaeGqpYQIjtZj_qk90Kbi7AkQvVf97Upay3E9vSu4YbzzKrip4VFyFKlC_jFYVTg.webp" alt="알렉산더 이삭" />
       <h2>알렉산더 이삭</h2>
-      <div class="info">
-        팀: 뉴캐슬<br />
-        득점: 23골<br />
-        포지션: 스트라이커
-      </div>
+      <p>팀: 뉴캐슬</p>
+      <p>득점: 23골</p>
+      <p>포지션: 스트라이커</p>
     </div>
 
-    <!-- 3등 -->
+    <!-- 1등: 살라 -->
+    <div class="player-card first">
+      <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
+      <h2>모하메드 살라</h2>
+      <p>팀: 리버풀</p>
+      <p>득점: 29골</p>
+      <p>포지션: 윙어</p>
+    </div>
+
+    <!-- 3등: 홀란드 -->
     <div class="player-card">
-      <div class="rank">🥉 3위</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Erling_Haaland_2022.jpg" alt="홀란드" />
+      <img src="https://i.namu.wiki/i/M8MRcvPVRU6XCdGWmjt_Bx3UeKUpww5KYAEesgp_PssemdUNf3yHifzg33yxmqS7639sJwEmz_WNqxz2WwUxNQ.webp" alt="얼링 홀란드" />
       <h2>얼링 홀란드</h2>
-      <div class="info">
-        팀: 맨체스터 시티<br />
-        득점: 22골<br />
-        포지션: 스트라이커
-      </div>
+      <p>팀: 맨체스터 시티</p>
+      <p>득점: 22골</p>
+      <p>포지션: 스트라이커</p>
     </div>
   </div>
 
