@@ -46,17 +46,43 @@
       flex: 1;
       max-width: 320px;
       scale: 1.15;
+      position: relative;
     }
 
     .first {
       transform: translateY(-20px);
     }
 
+    .image-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background-color: gold;
+      color: #003366;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .second .rank-badge {
+      background-color: silver;
+    }
+
+    .third .rank-badge {
+      background-color: #cd7f32; /* bronze */
+    }
+
     .player-card img {
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      margin-bottom: 18px;
       object-fit: cover;
       border: 3px solid gold;
     }
@@ -116,8 +142,11 @@
 
   <div class="podium">
     <!-- 2등: 이삭 -->
-    <div class="player-card">
-      <img src="https://i.namu.wiki/i/-vJwU-hGYWYKjSQFy2S2ObnaeGqpYQIjtZj_qk90Kbi7AkQvVf97Upay3E9vSu4YbzzKrip4VFyFKlC_jFYVTg.webp" alt="알렉산더 이삭" />
+    <div class="player-card second">
+      <div class="image-container">
+        <span class="rank-badge">2위 🥈</span>
+        <img src="https://i.namu.wiki/i/-vJwU-hGYWYKjSQFy2S2ObnaeGqpYQIjtZj_qk90Kbi7AkQvVf97Upay3E9vSu4YbzzKrip4VFyFKlC_jFYVTg.webp" alt="알렉산더 이삭" />
+      </div>
       <h2>알렉산더 이삭</h2>
       <p>팀: 뉴캐슬</p>
       <p>득점: 23골</p>
@@ -126,7 +155,10 @@
 
     <!-- 1등: 살라 -->
     <div class="player-card first">
-      <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
+      <div class="image-container">
+        <span class="rank-badge">1위 🥇</span>
+        <img src="https://i.namu.wiki/i/0zVfrZTwBFdD6BB7GehY1R54tbqRN15ixf_xinRIjpcmO7_Tjz1wEinXT_2p5y5CZ1D-jC5jLe_JXMPic_1yhQ.webp" alt="모하메드 살라" />
+      </div>
       <h2>모하메드 살라</h2>
       <p>팀: 리버풀</p>
       <p>득점: 29골</p>
@@ -134,8 +166,11 @@
     </div>
 
     <!-- 3등: 홀란드 -->
-    <div class="player-card">
-      <img src="https://i.namu.wiki/i/M8MRcvPVRU6XCdGWmjt_Bx3UeKUpww5KYAEesgp_PssemdUNf3yHifzg33yxmqS7639sJwEmz_WNqxz2WwUxNQ.webp" alt="얼링 홀란드" />
+    <div class="player-card third">
+      <div class="image-container">
+        <span class="rank-badge">3위 🥉</span>
+        <img src="https://i.namu.wiki/i/M8MRcvPVRU6XCdGWmjt_Bx3UeKUpww5KYAEesgp_PssemdUNf3yHifzg33yxmqS7639sJwEmz_WNqxz2WwUxNQ.webp" alt="얼링 홀란드" />
+      </div>
       <h2>얼링 홀란드</h2>
       <p>팀: 맨체스터 시티</p>
       <p>득점: 22골</p>
