@@ -15,7 +15,6 @@
       position: relative;
       overflow-x: hidden;
     }
-
     #background {
       position: fixed;
       top: 0; left: 0;
@@ -28,7 +27,6 @@
       z-index: -1;
       transition: background-image 0.5s ease-in-out;
     }
-
     .content {
       max-width: 1400px;
       margin: auto;
@@ -42,7 +40,6 @@
       border-radius: 20px;
       box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
     }
-
     .player-img {
       width: 500px;
       max-width: 100%;
@@ -53,7 +50,6 @@
       flex-shrink: 0;
       align-self: center;
     }
-
     .info-section {
       flex: 1;
       text-align: left !important;
@@ -61,7 +57,6 @@
       font-size: 1.4rem;
       align-self: center;
     }
-
     .player-name {
       font-size: 2.7rem;
       margin-bottom: 25px;
@@ -69,14 +64,12 @@
       letter-spacing: 1.2px;
       text-align: left !important;
     }
-
     .player-info {
       display: flex;
       flex-direction: column;
       gap: 16px;
       text-align: left !important;
     }
-
     .info-row {
       display: grid;
       grid-template-columns: 110px 1fr;
@@ -84,14 +77,12 @@
       align-items: start;
       text-align: left !important;
     }
-
     .label {
       color: #FFD700;
       font-weight: 700;
       white-space: nowrap;
       text-align: left !important;
     }
-
     .value, .value-wrap {
       text-align: left !important;
       white-space: pre-wrap;
@@ -99,7 +90,6 @@
       line-height: 1.4;
       max-width: 100%;
     }
-
     .back-btn {
       position: fixed;
       bottom: 20px;
@@ -116,12 +106,10 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       z-index: 1000;
     }
-
     .back-btn:hover {
       background-color: #f0c040;
       color: #111;
     }
-
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -139,16 +127,11 @@
       .info-row {
         grid-template-columns: 100px 1fr;
       }
-      .value, .value-wrap {
-        max-width: 100%;
-        text-align: left !important;
-      }
     }
   </style>
 </head>
 <body>
   <div id="background"></div>
-
   <div class="content">
     <img id="player-img" class="player-img" src="" alt="선수 이미지" />
     <div class="info-section">
@@ -156,7 +139,6 @@
       <div class="player-info" id="player-info"></div>
     </div>
   </div>
-
   <a class="back-btn" href="javascript:history.back()">← 목록으로</a>
 
   <script>
@@ -187,9 +169,7 @@
             age: 28,
             nationality: "스페인",
             season: "24-25 프리미어 리그 선발 1경기\n교체 2경기",
-            awards: [
-              "발롱도르 1위: 2024년"
-            ]
+            awards: ["발롱도르 1위: 2024년"]
           },
           "베실바": {
             img: "https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202108/24/spotvnews/20210824140719556ofgb.jpg",
@@ -245,7 +225,7 @@
               "맨체스터 시티 올해의 선수: 23-24",
               "프리미어 리그 올해의 영플레이어: 20-21, 21-22"
             ]
-          },
+          }
         }
       },
       liverpool: {
@@ -261,14 +241,13 @@
             season: "24-25 시즌 선발 프리미어 리그 38경기\n교체 0경기\n29득점 18도움",
             awards: [
               "프리미어 리그 득점왕 17-18,18-19,21-22,24-25",
-              "프리미어 리그 도움왕 21-22,24-25"
-              "프리미어 리그 이달의 선수 최다 수상: 7회[43]",
+              "프리미어 리그 도움왕 21-22,24-25",
+              "프리미어 리그 이달의 선수 최다 수상: 7회",
               "FIFA 푸스카스상: 2018"
             ]
-          }
-        },
-                  "반다이크": {
-            img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg" ,
+          },
+          "반다이크": {
+            img: "https://pimg.mk.co.kr/meet/neds/2020/03/image_readtop_2020_213199_15830298664106263.jpeg",
             height: "195cm",
             weight: "92kg",
             position: "센터백",
@@ -281,20 +260,18 @@
               "프리미어 리그 수비수 최다 헤더 득점: 18골"
             ]
           },
-                            "소보슬라이": {
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s" ,
+          "소보슬라이": {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB8RyrfV6m09y5a7jzSmnT6Lc30JhyUVwnog&s",
             height: "186cm",
             weight: "74kg",
             position: "미드필더, 윙어",
             age: 24,
             nationality: "헝가리",
             season: "24-25 시즌 선발 프리미어 리그 27경기\n교체 8경기\n6득점 5도움",
-            awards: [
-              "프리미어 리그 내 수상은 없음"
-            ]
+            awards: ["프리미어 리그 내 수상은 없음"]
           },
-                         "알리송": {
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s" ,
+          "알리송": {
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-96VgzAr49WfJZbdJfSsl7ElEd2KAHMqQA&s",
             height: "193cm",
             weight: "91kg",
             position: "골기퍼",
@@ -306,6 +283,8 @@
               "리버풀 올해의 선수: 22-23",
               "Goal 50 세계 최고의 골키퍼: 18, 19"
             ]
+          }
+        }
       }
     };
 
@@ -320,12 +299,7 @@
       document.getElementById("background").style.backgroundImage = `url(${teamData.teamBackground})`;
       document.getElementById("player-name").textContent = playerName;
       document.getElementById("player-img").src = playerData.img;
-
-      // 줄바꿈이 보이도록 <br>로 변환
-      const awardsText = playerData.awards && playerData.awards.length
-        ? playerData.awards.join("<br>")
-        : "정보 없음";
-
+      const awardsText = playerData.awards?.join("<br>") || "정보 없음";
       document.getElementById("player-info").innerHTML = `
         <div class="info-row"><span class="label">포지션:</span><span class="value">${playerData.position}</span></div>
         <div class="info-row"><span class="label">나이:</span><span class="value">${playerData.age}세</span></div>
@@ -341,4 +315,3 @@
   </script>
 </body>
 </html>
-
