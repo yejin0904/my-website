@@ -2,57 +2,68 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>2024-25 EPL 팀 순위</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
+    /* 배경 이미지 및 어두운 오버레이 */
     body {
-      margin: 0; padding: 20px;
+      margin: 0;
+      padding: 20px;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #001f3f, #003366);
-      color: white;
       min-height: 100vh;
+      color: white;
       text-align: center;
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('https://www.sportsgamblingpodcast.com/wp-content/uploads/2020/09/2746E906-F87C-4764-8CE8-E5F1EF18EAA9.jpeg') no-repeat center center fixed;
+      background-size: cover;
     }
     h1 {
       color: gold;
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
     }
     table {
       margin: 0 auto;
       border-collapse: collapse;
-      width: 90%;
-      max-width: 600px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+      width: 100%;
+      max-width: 900px;  /* 최대 크기 키움 */
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     }
     th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #ddd;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
       font-weight: 500;
+      color: white;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
     }
     th {
       background-color: gold;
       color: #003366;
       font-weight: 700;
+      text-shadow: none;
     }
     tr:hover {
-      background-color: rgba(255, 215, 0, 0.2);
+      background-color: rgba(255, 215, 0, 0.3);
+      cursor: default;
     }
     .back-button {
-      margin-top: 30px;
-      padding: 10px 20px;
+      margin-top: 35px;
+      padding: 12px 28px;
       background: gold;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: 700;
       color: #003366;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(255,215,0,0.6);
+      box-shadow: 0 5px 12px rgba(255, 215, 0, 0.8);
       transition: background 0.3s ease;
+      font-size: 1.1rem;
     }
     .back-button:hover {
       background: #ffd700cc;
@@ -67,19 +78,23 @@
       <tr>
         <th>순위</th>
         <th>팀명</th>
+        <th>경기</th>
         <th>승</th>
         <th>무</th>
         <th>패</th>
+        <th>득점</th>
+        <th>실점</th>
+        <th>득실차</th>
         <th>승점</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>맨체스터 시티</td><td>28</td><td>6</td><td>4</td><td>90</td></tr>
-      <tr><td>2</td><td>아스널</td><td>25</td><td>7</td><td>6</td><td>82</td></tr>
-      <tr><td>3</td><td>리버풀</td><td>24</td><td>8</td><td>6</td><td>80</td></tr>
-      <tr><td>4</td><td>첼시</td><td>21</td><td>10</td><td>7</td><td>73</td></tr>
-      <tr><td>5</td><td>맨체스터 유나이티드</td><td>19</td><td>9</td><td>10</td><td>66</td></tr>
-      <tr><td>6</td><td>토트넘</td><td>17</td><td>11</td><td>10</td><td>62</td></tr>
+      <tr><td>1</td><td>리버풀</td><td>38</td><td>25</td><td>9</td><td>4</td><td>86</td><td>41</td><td>+45</td><td>84</td></tr>
+      <tr><td>2</td><td>아스널</td><td>38</td><td>20</td><td>14</td><td>4</td><td>69</td><td>34</td><td>+35</td><td>74</td></tr>
+      <tr><td>3</td><td>맨체스터 시티</td><td>38</td><td>21</td><td>8</td><td>9</td><td>72</td><td>44</td><td>+28</td><td>71</td></tr>
+      <tr><td>4</td><td>첼시</td><td>38</td><td>20</td><td>9</td><td>9</td><td>64</td><td>43</td><td>+21</td><td>69</td></tr>
+      <tr><td>15</td><td>맨체스터 유나이티드</td><td>38</td><td>11</td><td>9</td><td>18</td><td>44</td><td>54</td><td>-10</td><td>42</td></tr>
+      <tr><td>17</td><td>토트넘</td><td>38</td><td>11</td><td>5</td><td>22</td><td>64</td><td>65</td><td>-1</td><td>38</td></tr>
     </tbody>
   </table>
 
